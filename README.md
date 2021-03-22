@@ -1,4 +1,4 @@
-# rentingit
+# Rentingit
  
  
 ## This is our workflow diagram.
