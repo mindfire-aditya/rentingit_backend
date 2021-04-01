@@ -1,10 +1,11 @@
-package com.mindfire.rentingit;
+package com.rentingit;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RentingitApplicationTests {
+class RentingItApplicationTests {
 
 	@Test
 	void contextLoads() {
