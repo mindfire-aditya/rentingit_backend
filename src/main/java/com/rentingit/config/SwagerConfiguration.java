@@ -6,7 +6,7 @@ import java.util.Collections;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.swagger.models.parameters.Parameter;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -22,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwagerConfiguration {
 	
+	//added the authorization part in UI part.
 	springfox.documentation.service.Parameter authHeader = new ParameterBuilder()
 			  .parameterType("header")
 			  .name("Authorization")

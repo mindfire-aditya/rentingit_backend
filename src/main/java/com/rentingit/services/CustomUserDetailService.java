@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rentingit.model.User;
-import com.rentingit.repo.UserRepository;
+import com.rentingit.repository.UserRepository;
 @Service
 public class CustomUserDetailService implements UserDetailsService{
 	@Autowired
