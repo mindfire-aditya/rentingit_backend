@@ -21,14 +21,15 @@ import com.mindfire.rentingit.services.AddUsers;
 @RequestMapping("/rentingIt/user")
 public class JwtAuthenticationController {
 
-
-
 	@Autowired
 	UserRepository userRepository;
+	
 	@Autowired
 	PasswordEncoder encoder;
+	
 	@Autowired
 	RoleRepository roleRepository;
+	
 	@Autowired
 	AddUsers addUser;
 
@@ -38,13 +39,13 @@ public class JwtAuthenticationController {
 		return addUser.authUser(jwtRequest);
 		}
 
-		@PostMapping("/signup")
-		public ResponseEntity<?> registerUser(@RequestBody SignupRequest signuprequest) {
-			
-			return addUser.addingUser(signuprequest);
-			
-		}
+	@PostMapping("/signup")
+	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signuprequest) {
 		
+		return addUser.addingUser(signuprequest);
+		
+	}
+	
 		
 }
 
