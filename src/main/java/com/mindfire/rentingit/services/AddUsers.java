@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 import com.mindfire.rentingit.constants.Message;
 import com.mindfire.rentingit.exception.RepeatedUserDetails;
 import com.mindfire.rentingit.exception.RoleNotFound;
