@@ -16,5 +16,4 @@ public class RentingItApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RentingItApplication.class, args);
 	}
-
 }

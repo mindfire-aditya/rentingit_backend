@@ -61,8 +61,5 @@ public class JwtResponse {
 	public List<String> getRoles() {
 		return roles;
 	}
-	
-	
 
 }
-
