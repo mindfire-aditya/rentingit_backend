@@ -29,14 +29,11 @@ public class Jwtutil {
 
 	public String generateJwtToken(Authentication authentication) {
 
-		CustomerUserDetails  userPrincipal = (CustomerUserDetails ) authentication.getPrincipal();
+		CustomerUserDetails userPrincipal = (CustomerUserDetails) authentication.getPrincipal();
 
-		return Jwts.builder()
-				.setSubject((userPrincipal.getUsername()))
-				.setIssuedAt(new Date())
+		return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
-				.compact();
+				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
 	}
 
 	public String getUserNameFromJwtToken(String token) {
@@ -60,7 +57,5 @@ public class Jwtutil {
 		}
 
 		return false;
+	}
 }
-}
-
-

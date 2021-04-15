@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 import com.mindfire.rentingit.constants.Message;
 import com.mindfire.rentingit.exception.RepeatedUserDetails;
 import com.mindfire.rentingit.exception.RoleNotFound;
@@ -43,35 +42,30 @@ public class AddUsers {
 	private Jwtutil jwtUtil;
 	@Autowired
 	Message msg;
-	
-	public ResponseEntity<?> authUser(Loginrequest jwtRequest) throws Exception{
+
+	public ResponseEntity<?> authUser(Loginrequest jwtRequest) throws Exception {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken( jwtRequest.getUsername(),  jwtRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtil.generateJwtToken(authentication);
-		
-		CustomerUserDetails userDetails = (CustomerUserDetails) authentication.getPrincipal();		
-		List<String> roles = userDetails.getAuthorities().stream()
-				.map(item -> item.getAuthority())
+
+		CustomerUserDetails userDetails = (CustomerUserDetails) authentication.getPrincipal();
+		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwt, 
-												 userDetails.getId(), 
-												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
-												 roles));
+		return ResponseEntity.ok(
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
 	}
 
-	
 	// function for checking alredy existing user as well as adding new user
 	public ResponseEntity<?> addingUser(SignupRequest signuprequest) {
 		if (userRepository.existsByUsername(signuprequest.getUsername())) {
 			return ResponseEntity.ok(new RepeatedUserDetails(msg.USERNAME_TAKEN));
-					
-					//.badRequest()
-					//.body(new MessageResponse("Error: Username is already taken!"));
+
+			// .badRequest()
+			// .body(new MessageResponse("Error: Username is already taken!"));
 		}
 
 		if (userRepository.existsByEmail(signuprequest.getEmail())) {
@@ -79,10 +73,8 @@ public class AddUsers {
 		}
 
 		// Create new user's account
-		User user = new User( 
-							 signuprequest.getEmail(),
-							 encoder.encode(signuprequest.getPassword()),
-							 signuprequest.getUsername());
+		User user = new User(signuprequest.getEmail(), encoder.encode(signuprequest.getPassword()),
+				signuprequest.getUsername());
 
 		Set<String> strRoles = signuprequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -110,6 +102,5 @@ public class AddUsers {
 
 		return ResponseEntity.ok(new MessageResponse(msg.USER_REGISTERED));
 	}
-
 
 }

@@ -1,6 +1,5 @@
 package com.mindfire.rentingit.payload.response;
 
-
 public class ReCaptchaResponse {
 	private boolean success;
 	private String challenge_ts;
@@ -31,4 +30,3 @@ public class ReCaptchaResponse {
 	}
 
 }
-
