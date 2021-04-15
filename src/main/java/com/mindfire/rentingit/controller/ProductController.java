@@ -55,10 +55,27 @@ public class ProductController {
 	}
 	
 	// get product by category id
-	@GetMapping("/category/{id}")
+	@GetMapping("/category/id/{id}")
 	public Category getProductByCategoryId(@PathVariable (value = "id") long productId) {
 		return this.categoryRepository.findById(productId)
 				.orElseThrow(() -> new ResourceNotFoundException("Category not found with id :" + productId));
 	}
+	
+	//get the product based upon Parent category name
+	@GetMapping("/category/parentcategory/{parentCategoryName}")
+	public List<Category> getProductByParentCategoryName(@PathVariable (value = "parentCategoryName") String parentCategoryName){
+		return (List<Category>) this.categoryRepository.findByParentCategory(parentCategoryName);
+				//.orElseThrow(() -> new ResourceNotFoundException("Parent category not found with name as ::"+ parentCategoryName));
+		
+	}
+	
+	//get the product based upon Child category name
+		@GetMapping("/category/childcategory/{childCategoryName}")
+		public Category getProductByChildCategoryName(@PathVariable (value = "childCategoryName") String childCategoryName){
+			return this.categoryRepository.findByChildCategory(childCategoryName)
+					.orElseThrow(() -> new ResourceNotFoundException("Child category not found with name as ::"+ childCategoryName));
+			
+		}
+	
 	
 }

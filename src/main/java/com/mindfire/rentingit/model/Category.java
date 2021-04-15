@@ -7,21 +7,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CATEGORIES")
+@Table(name = "CATEGORIES")
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	
-	private String category_name;
 
-	public Category() {}
-	
-	public Category(Long id, String category_name) {
+	private String parentCategory;
+	private String childCategory;
+	private Long parentCategoryId;
+
+	public Category() {
+	}
+
+	public Category(Long id, String parentCategory, String childCategory, Long parentCategoryId) {
 		super();
 		Id = id;
-		this.category_name = category_name;
+		this.parentCategory = parentCategory;
+		this.childCategory = childCategory;
+		this.parentCategoryId = parentCategoryId;
 	}
 
 	public Long getId() {
@@ -32,11 +37,28 @@ public class Category {
 		Id = id;
 	}
 
-	public String getCategoryName() {
-		return category_name;
+	public String getParentCategory() {
+		return parentCategory;
 	}
 
-	public void setCategoryName(String category_name) {
-		this.category_name = category_name;
+	public void setParentCategory(String parentCategory) {
+		this.parentCategory = parentCategory;
 	}
+
+	public String getChildCategory() {
+		return childCategory;
+	}
+
+	public void setChildCategory(String childCategory) {
+		this.childCategory = childCategory;
+	}
+
+	public Long getParentCategoryId() {
+		return parentCategoryId;
+	}
+
+	public void setParentCategoryId(Long parentCategoryId) {
+		this.parentCategoryId = parentCategoryId;
+	}
+
 }

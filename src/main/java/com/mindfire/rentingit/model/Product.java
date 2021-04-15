@@ -7,32 +7,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ASSETS")
+@Table(name = "ASSETS")
 public class Product {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	
+
 	private String productName;
-	private String maintainanceTime; 
+	private String maintainanceTime;
 	private String assetStatus;
 	private String assetDescription;
 	private String imageUrl;
+	private String parentCategory;
+	private String childCategory;
 	private int units;
 	private int pricePerHour;
 	private int pricePerDay;
 	private int pricePerWeek;
 	private int pricePerMonth;
 	private int pinCode;
-	
-	
-	public Long getId() {
-		return Id;
+
+	public Product() {
 	}
 
 	public Product(Long id, String productName, String maintainanceTime, String assetStatus, String assetDescription,
-			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
-			int pinCode) {
+			String imageUrl, String parentCategory, String childCategory, int units, int pricePerHour, int pricePerDay,
+			int pricePerWeek, int pricePerMonth, int pinCode) {
 		super();
 		Id = id;
 		this.productName = productName;
@@ -40,12 +40,18 @@ public class Product {
 		this.assetStatus = assetStatus;
 		this.assetDescription = assetDescription;
 		this.imageUrl = imageUrl;
+		this.parentCategory = parentCategory;
+		this.childCategory = childCategory;
 		this.units = units;
 		this.pricePerHour = pricePerHour;
 		this.pricePerDay = pricePerDay;
 		this.pricePerWeek = pricePerWeek;
 		this.pricePerMonth = pricePerMonth;
 		this.pinCode = pinCode;
+	}
+
+	public Long getId() {
+		return Id;
 	}
 
 	public void setId(Long id) {
@@ -140,9 +146,20 @@ public class Product {
 		this.pinCode = pinCode;
 	}
 
-	public Product() {}
-	
-	
+	public String getParentCategory() {
+		return parentCategory;
+	}
 
+	public void setParentCategory(String parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
+	public String getChildCategory() {
+		return childCategory;
+	}
+
+	public void setChildCategory(String childCategory) {
+		this.childCategory = childCategory;
+	}
 
 }
