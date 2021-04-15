@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mindfire.rentingit.model.User;
 
-public class CustomerUserDetails implements UserDetails{
+public class CustomerUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -37,14 +37,9 @@ public class CustomerUserDetails implements UserDetails{
 
 	public static CustomerUserDetails build(User user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
-				.collect(Collectors.toList());
+				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
-		return new CustomerUserDetails(
-				user.getId(), 
-				user.getUsername(), 
-				user.getEmail(),
-				user.getPassword(), 
+		return new CustomerUserDetails(user.getId(), user.getUsername(), user.getEmail(), user.getPassword(),
 				authorities);
 	}
 
@@ -52,7 +47,6 @@ public class CustomerUserDetails implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -61,6 +55,7 @@ public class CustomerUserDetails implements UserDetails{
 	public String getEmail() {
 		return email;
 	}
+
 	@Override
 	public String getPassword() {
 		return password;
