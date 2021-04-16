@@ -1,16 +1,29 @@
 package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "PICKUP_DETAILS")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PickUpDetails {
 
-	private Long assetId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private int assetId;
 
 	private int pinCode;
 
@@ -21,18 +34,6 @@ public class PickUpDetails {
 	private String googleMapLocation;
 	private String cityTown;
 
-	public PickUpDetails(Long assetId, int pinCode, String houseNumber, String street, String lane, String landmark,
-			String googleMapLocation, String cityTown) {
-		super();
-		this.assetId = assetId;
-		this.pinCode = pinCode;
-		this.houseNumber = houseNumber;
-		this.street = street;
-		this.lane = lane;
-		this.landmark = landmark;
-		this.googleMapLocation = googleMapLocation;
-		this.cityTown = cityTown;
-	}
 	
 	
 
