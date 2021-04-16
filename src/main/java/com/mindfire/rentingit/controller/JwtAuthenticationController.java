@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mindfire.rentingit.payload.request.Loginrequest;
-import com.mindfire.rentingit.payload.request.SignupRequest;
+import com.mindfire.rentingit.dto.request.Loginrequest;
+import com.mindfire.rentingit.dto.request.SignupRequest;
 import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 import com.mindfire.rentingit.services.AddUsers;

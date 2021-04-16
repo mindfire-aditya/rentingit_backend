@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.payload.request;
+package com.mindfire.rentingit.dto.request;
 
 public class Loginrequest {
 	String username;

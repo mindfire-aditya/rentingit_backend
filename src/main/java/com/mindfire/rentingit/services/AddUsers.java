@@ -15,16 +15,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mindfire.rentingit.constants.Message;
+import com.mindfire.rentingit.dto.request.Loginrequest;
+import com.mindfire.rentingit.dto.request.SignupRequest;
+import com.mindfire.rentingit.dto.response.JwtResponse;
+import com.mindfire.rentingit.dto.response.MessageResponse;
 import com.mindfire.rentingit.entity.Erole;
 import com.mindfire.rentingit.entity.Role;
 import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.exception.RepeatedUserDetails;
 import com.mindfire.rentingit.exception.RoleNotFound;
 import com.mindfire.rentingit.helper.Jwtutil;
-import com.mindfire.rentingit.payload.request.Loginrequest;
-import com.mindfire.rentingit.payload.request.SignupRequest;
-import com.mindfire.rentingit.payload.response.JwtResponse;
-import com.mindfire.rentingit.payload.response.MessageResponse;
 import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 
