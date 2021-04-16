@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.model;
+package com.mindfire.rentingit.entity;
 
 import java.util.HashSet;
 import java.util.Set;

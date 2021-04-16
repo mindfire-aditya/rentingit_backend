@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.model;
+package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,13 +24,15 @@ public class Product {
 	private int pricePerWeek;
 	private int pricePerMonth;
 	private int pinCode;
+	private int categoryId;
+	private int ownerId;
 
 	public Product() {
 	}
 
 	public Product(Long id, String productName, String maintainanceTime, String assetStatus, String assetDescription,
 			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
-			int pinCode) {
+			int pinCode, int categoryId, int ownerId) {
 		super();
 		Id = id;
 		this.productName = productName;
@@ -44,6 +46,8 @@ public class Product {
 		this.pricePerWeek = pricePerWeek;
 		this.pricePerMonth = pricePerMonth;
 		this.pinCode = pinCode;
+		this.categoryId = categoryId;
+		this.ownerId = ownerId;
 	}
 
 	public Long getId() {
@@ -140,6 +144,22 @@ public class Product {
 
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public int getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
 	}
 
 }

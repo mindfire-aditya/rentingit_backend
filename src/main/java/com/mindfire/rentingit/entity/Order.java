@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.model;
+package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

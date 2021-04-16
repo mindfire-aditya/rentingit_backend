@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.model;
+package com.mindfire.rentingit.entity;
 
 public enum Erole {
 	ROLE_USER,

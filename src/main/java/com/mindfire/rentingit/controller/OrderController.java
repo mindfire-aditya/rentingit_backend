@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mindfire.rentingit.entity.Order;
+import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.exception.ResourceNotFoundException;
-import com.mindfire.rentingit.model.Order;
-import com.mindfire.rentingit.model.User;
 import com.mindfire.rentingit.repository.OrderRepository;
 
 @CrossOrigin(origins = "*")
