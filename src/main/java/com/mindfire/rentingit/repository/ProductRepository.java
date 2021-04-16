@@ -13,6 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	Optional<Product> findByPinCode(int pincode);
 
-	List<Product> findByCategoryId();
+	List<Product> findByCategoryId(Long Id);
 
 }
