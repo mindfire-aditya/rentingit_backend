@@ -59,6 +59,12 @@ public class ProductController {
 	public List<Product> getProductByCategoryId(@PathVariable(value = "id") int categoryId) {
 		return this.productRepository.findByCategoryId(categoryId);
 	}
+	
+	@GetMapping("/ownerId/{id}")
+	public List<Product> getProductsByOwnerId(@PathVariable(value = "id") int id) {
+		return productRepository.findByOwnerId(id);
+	}
+	
 
 	// get the product based upon Parent category name
 	@GetMapping("/category/parentcategory/{parentCategoryName}")
