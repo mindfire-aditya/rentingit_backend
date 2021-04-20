@@ -76,5 +76,11 @@ public class ProductController {
 				() -> new ResourceNotFoundException("Child category not found with name as ::" + childCategoryName));
 
 	}
+	
+	
+	@GetMapping("/search/{productName}")
+	public List<Product> getProductsByProductName(@PathVariable(value = "productName") String productName){
+		return productRepository.findByProductName(productName);
+	}
 
 }
