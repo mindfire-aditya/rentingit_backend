@@ -132,3 +132,5 @@ buildNumber.properties
 .idea/libraries/Maven__org_yaml_snakeyaml_1_27.xml
 .idea/workspace.xml
 .project
+
+src/main/resources/static/uploaded
