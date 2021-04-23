@@ -59,10 +59,10 @@ public class UserController {
 
 	// update user details
 	@PutMapping("/update-info/{id}")
-	public UserDetailsInfo userDetailsUpdate(@RequestBody User user, @RequestBody UserDetailsInfo existingUserDetails,
+	public UserDetailsInfo userDetailsUpdate(@RequestBody UserDetailsInfo existingUserDetails,
 			@PathVariable("id") long userId) {
 
-		return addUser.updateUserInfo(user, existingUserDetails, userId);
+		return addUser.updateUserInfo(existingUserDetails, userId);
 	}
 
 	// get user details by id

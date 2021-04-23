@@ -29,13 +29,13 @@ public class UserDetailsInfo {
 	
 	
 	public UserDetailsInfo() {
-		super();
+
 	}
 
 	public UserDetailsInfo(String firstName, String lastName, long phoneNo, int houseNo, int streetNo,
 			String lane, String district, String state, String landmark, String city, int pincode, String idProofType,
 			String idNumber,long id) {
-		super();
+
 		Id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;

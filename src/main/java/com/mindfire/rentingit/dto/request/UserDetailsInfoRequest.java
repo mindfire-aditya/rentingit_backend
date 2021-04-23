@@ -1,7 +1,7 @@
 package com.mindfire.rentingit.dto.request;
 
 public class UserDetailsInfoRequest {
-	private long id;
+
 	private String firstName;
 	private String lastName;
 	private long phoneNo;
@@ -16,14 +16,7 @@ public class UserDetailsInfoRequest {
 	private String idProofType;
 	private String idNumber;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getFirstName() {
 		return firstName;
 	}
