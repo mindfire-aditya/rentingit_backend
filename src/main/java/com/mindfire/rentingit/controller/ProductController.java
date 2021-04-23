@@ -4,17 +4,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mindfire.rentingit.dto.request.ProductRegisterRequest;
 import com.mindfire.rentingit.entity.Category;
 import com.mindfire.rentingit.entity.Product;
 import com.mindfire.rentingit.exception.ResourceNotFoundException;
 import com.mindfire.rentingit.repository.CategoryRepository;
 import com.mindfire.rentingit.repository.ProductRepository;
+import com.mindfire.rentingit.services.AddProducts;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -26,7 +31,17 @@ public class ProductController {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	AddProducts addProducts;
 
+	
+	// method for registering user products for rent
+	@PostMapping(value = "/register-products-for-rent")
+	public ResponseEntity<?> registerProducts(@RequestBody ProductRegisterRequest productRegisterRequest) throws Exception {
+		return addProducts.addingProductDetails(productRegisterRequest);
+	}
+	
 	// get all Category
 	@GetMapping("category/all")
 	public List<Category> getAllCategory() {

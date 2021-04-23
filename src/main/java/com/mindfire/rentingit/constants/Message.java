@@ -10,4 +10,7 @@ public class Message {
 	public final String ROLE_NOT_FOUND = "Error: Role is not found.";
 	public final String USER_REGISTERED = "User registered successfully! !";
 	public final String USER_INFO_ADDED = "User details are added successfully! !";
+	public final String PRODUCTS_ADDED = "Product and its details are added successfully! !";
+
+	
 }
