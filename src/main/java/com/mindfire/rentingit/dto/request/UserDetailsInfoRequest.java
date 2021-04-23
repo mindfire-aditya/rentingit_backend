@@ -120,5 +120,7 @@ public class UserDetailsInfoRequest {
 	public void setPhoneNo(long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
+	
+	
 
 }

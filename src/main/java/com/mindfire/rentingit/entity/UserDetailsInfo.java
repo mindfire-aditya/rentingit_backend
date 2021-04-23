@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin("*")
 @Entity
 @Table(name = "USERS_INFO")
 public class UserDetailsInfo {
@@ -26,17 +29,17 @@ public class UserDetailsInfo {
 	private String idNumber;
 
 	
-	
-	
 	public UserDetailsInfo() {
 
 	}
 
-	public UserDetailsInfo(String firstName, String lastName, long phoneNo, int houseNo, int streetNo,
-			String lane, String district, String state, String landmark, String city, int pincode, String idProofType,
-			String idNumber,long id) {
+	
 
-		Id = id;
+	public UserDetailsInfo(long id, String firstName, String lastName, long phoneNo, int houseNo, int streetNo,
+			String lane, String district, String state, String landmark, String city, int pincode, String idProofType,
+			String idNumber) {
+		super();
+		this.Id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNo = phoneNo;
@@ -50,7 +53,10 @@ public class UserDetailsInfo {
 		this.pincode = pincode;
 		this.idProofType = idProofType;
 		this.idNumber = idNumber;
+		
 	}
+
+
 
 	public long getId() {
 		return Id;
@@ -163,5 +169,6 @@ public class UserDetailsInfo {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
+	
 
 }

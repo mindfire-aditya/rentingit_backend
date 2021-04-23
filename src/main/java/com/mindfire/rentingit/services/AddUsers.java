@@ -10,11 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.mindfire.rentingit.constants.Message;
 import com.mindfire.rentingit.dto.request.LoginRequest;
@@ -31,8 +29,8 @@ import com.mindfire.rentingit.exception.ResourceNotFoundException;
 import com.mindfire.rentingit.exception.RoleNotFound;
 import com.mindfire.rentingit.helper.Jwtutil;
 import com.mindfire.rentingit.repository.RoleRepository;
-import com.mindfire.rentingit.repository.UserRepository;
 import com.mindfire.rentingit.repository.UserDetailsInfoRepository;
+import com.mindfire.rentingit.repository.UserRepository;
 
 @Service
 public class AddUsers {
@@ -115,13 +113,13 @@ public class AddUsers {
 	public ResponseEntity<?> addingUserDetails(UserDetailsInfoRequest userDetailsInfoRequest, long userId) {
 
 		// Create new userDetails info with required details
-		UserDetailsInfo userDetails = new UserDetailsInfo(userDetailsInfoRequest.getFirstName(),
+		UserDetailsInfo userDetails = new UserDetailsInfo(userId, userDetailsInfoRequest.getFirstName(),
 				userDetailsInfoRequest.getLastName(), userDetailsInfoRequest.getPhoneNo(),
 				userDetailsInfoRequest.getHouseNo(), userDetailsInfoRequest.getStreetNo(),
 				userDetailsInfoRequest.getLane(), userDetailsInfoRequest.getDistrict(),
 				userDetailsInfoRequest.getState(), userDetailsInfoRequest.getLandmark(),
 				userDetailsInfoRequest.getCity(), userDetailsInfoRequest.getPincode(),
-				userDetailsInfoRequest.getIdProofType(), userDetailsInfoRequest.getIdNumber(), userId);
+				userDetailsInfoRequest.getIdProofType(), userDetailsInfoRequest.getIdNumber());
 
 		userDetailsInfoRepository.save(userDetails);
 
