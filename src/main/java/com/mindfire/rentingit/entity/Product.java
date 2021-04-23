@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private long Id;
 
 	private String productName;
 	private String maintainanceTime;
@@ -27,8 +27,7 @@ public class Product {
 	private int categoryId;
 	private int ownerId;
 
-	public Product() {
-	}
+	public Product() {}
 
 	
 	public Product(String productName, String maintainanceTime, String assetStatus, String assetDescription,
@@ -51,25 +50,7 @@ public class Product {
 	}
 
 
-	public Product(Long id, String productName, String maintainanceTime, String assetStatus, String assetDescription,
-			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
-			int pinCode, int categoryId, int ownerId) {
-		super();
-		Id = id;
-		this.productName = productName;
-		this.maintainanceTime = maintainanceTime;
-		this.assetStatus = assetStatus;
-		this.assetDescription = assetDescription;
-		this.imageUrl = imageUrl;
-		this.units = units;
-		this.pricePerHour = pricePerHour;
-		this.pricePerDay = pricePerDay;
-		this.pricePerWeek = pricePerWeek;
-		this.pricePerMonth = pricePerMonth;
-		this.pinCode = pinCode;
-		this.categoryId = categoryId;
-		this.ownerId = ownerId;
-	}
+
 
 	public long getId() {
 		return Id;
