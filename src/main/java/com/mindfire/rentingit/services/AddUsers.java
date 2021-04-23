@@ -129,16 +129,8 @@ public class AddUsers {
 	// updating user info
 	public UserDetailsInfo updateUserInfo(UserDetailsInfo existingUserDetails, long userId) {
 
-		// User existingUser = this.userRepository.findById(userId)
-		// .orElseThrow(() -> new ResourceNotFoundException("User not found with id : "
-		// + userId));
-
 		UserDetailsInfo existingUserDetail = this.userDetailsInfoRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
-		// updating details
-//		existingUser.setUsername(user.getUsername());
-//		existingUser.setEmail(user.getEmail());
-//		existingUser.setPassword(user.getPassword());
 
 		existingUserDetail.setCity(existingUserDetails.getCity());
 		existingUserDetail.setFirstName(existingUserDetails.getFirstName());
@@ -152,7 +144,7 @@ public class AddUsers {
 		existingUserDetails.setLandmark(existingUserDetails.getLandmark());
 		existingUserDetail.setIdProofType(existingUserDetails.getIdProofType());
 		existingUserDetail.setIdNumber(existingUserDetails.getIdNumber());
-//		this.userRepository.save(existingUser);
+
 		this.userDetailsInfoRepository.save(existingUserDetail);
 		return this.userDetailsInfoRepository.save(existingUserDetail);
 	}
