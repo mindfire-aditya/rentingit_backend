@@ -15,18 +15,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mindfire.rentingit.constants.Message;
-import com.mindfire.rentingit.dto.request.Loginrequest;
+import com.mindfire.rentingit.dto.request.LoginRequest;
 import com.mindfire.rentingit.dto.request.SignupRequest;
+import com.mindfire.rentingit.dto.request.UserDetailsInfoRequest;
 import com.mindfire.rentingit.dto.response.JwtResponse;
 import com.mindfire.rentingit.dto.response.MessageResponse;
 import com.mindfire.rentingit.entity.Erole;
 import com.mindfire.rentingit.entity.Role;
 import com.mindfire.rentingit.entity.User;
+import com.mindfire.rentingit.entity.UserDetailsInfo;
 import com.mindfire.rentingit.exception.RepeatedUserDetails;
 import com.mindfire.rentingit.exception.RoleNotFound;
 import com.mindfire.rentingit.helper.Jwtutil;
 import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserRepository;
+import com.mindfire.rentingit.repository.UserDetailsInfoRepository;
 
 @Service
 public class AddUsers {
@@ -34,6 +37,8 @@ public class AddUsers {
 	private AuthenticationManager authenticationManager;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	UserDetailsInfoRepository userDetailsInfoRepository;
 	@Autowired
 	PasswordEncoder encoder;
 	@Autowired
@@ -43,7 +48,7 @@ public class AddUsers {
 	@Autowired
 	Message msg;
 
-	public ResponseEntity<?> authUser(Loginrequest jwtRequest) throws Exception {
+	public ResponseEntity<?> authUser(LoginRequest jwtRequest) throws Exception {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
@@ -102,5 +107,29 @@ public class AddUsers {
 
 		return ResponseEntity.ok(new MessageResponse(msg.USER_REGISTERED));
 	}
+	
+	// function for adding the user extra details in DB
+	public ResponseEntity<?> addingUserDetails(UserDetailsInfoRequest userDetailsInfoRequest, long userId) {
+		
+		// Create new userDetails info with required details
+		UserDetailsInfo userDetails = new UserDetailsInfo(userDetailsInfoRequest.getFirstName(),
+														  userDetailsInfoRequest.getLastName(),
+														  userDetailsInfoRequest.getPhoneNo(),
+														  userDetailsInfoRequest.getHouseNo(),
+														  userDetailsInfoRequest.getStreetNo(),
+														  userDetailsInfoRequest.getLane(),
+														  userDetailsInfoRequest.getDistrict(),
+														  userDetailsInfoRequest.getState(),
+														  userDetailsInfoRequest.getLandmark(),
+														  userDetailsInfoRequest.getCity(),
+														  userDetailsInfoRequest.getPincode(),
+														  userDetailsInfoRequest.getIdProofType(),
+														  userDetailsInfoRequest.getIdNumber(),userId);
+
+		userDetailsInfoRepository.save(userDetails);
+
+		return ResponseEntity.ok(new MessageResponse(msg.USER_INFO_ADDED));
+	}
+	
 
 }

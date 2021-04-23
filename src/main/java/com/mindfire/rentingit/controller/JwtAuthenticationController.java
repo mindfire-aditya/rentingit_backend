@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mindfire.rentingit.dto.request.Loginrequest;
+import com.mindfire.rentingit.dto.request.LoginRequest;
 import com.mindfire.rentingit.dto.request.SignupRequest;
 import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserRepository;
@@ -34,7 +34,7 @@ public class JwtAuthenticationController {
 
 	// method for signin
 	@PostMapping(value = "/signin")
-	public ResponseEntity<?> authenticateUser(@RequestBody Loginrequest jwtRequest) throws Exception {
+	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest jwtRequest) throws Exception {
 
 		return addUser.authUser(jwtRequest);
 	}
