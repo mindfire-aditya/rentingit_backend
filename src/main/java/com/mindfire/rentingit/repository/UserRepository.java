@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mindfire.rentingit.model.User;
+import com.mindfire.rentingit.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

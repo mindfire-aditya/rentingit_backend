@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.payload.response;
+package com.mindfire.rentingit.dto.response;
 
 public class ReCaptchaResponse {
 	private boolean success;

@@ -10,22 +10,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.mindfire.rentingit.constants.Message;
+import com.mindfire.rentingit.dto.request.LoginRequest;
+import com.mindfire.rentingit.dto.request.SignupRequest;
+import com.mindfire.rentingit.dto.request.UserDetailsInfoRequest;
+import com.mindfire.rentingit.dto.response.JwtResponse;
+import com.mindfire.rentingit.dto.response.MessageResponse;
+import com.mindfire.rentingit.entity.Erole;
+import com.mindfire.rentingit.entity.Role;
+import com.mindfire.rentingit.entity.User;
+import com.mindfire.rentingit.entity.UserDetailsInfo;
 import com.mindfire.rentingit.exception.RepeatedUserDetails;
+import com.mindfire.rentingit.exception.ResourceNotFoundException;
 import com.mindfire.rentingit.exception.RoleNotFound;
 import com.mindfire.rentingit.helper.Jwtutil;
-import com.mindfire.rentingit.model.Erole;
-import com.mindfire.rentingit.model.Role;
-import com.mindfire.rentingit.model.User;
-import com.mindfire.rentingit.payload.request.Loginrequest;
-import com.mindfire.rentingit.payload.request.SignupRequest;
-import com.mindfire.rentingit.payload.response.JwtResponse;
-import com.mindfire.rentingit.payload.response.MessageResponse;
 import com.mindfire.rentingit.repository.RoleRepository;
+import com.mindfire.rentingit.repository.UserDetailsInfoRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 
 @Service
@@ -35,6 +39,8 @@ public class AddUsers {
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
+	UserDetailsInfoRepository userDetailsInfoRepository;
+	@Autowired
 	PasswordEncoder encoder;
 	@Autowired
 	RoleRepository roleRepository;
@@ -43,7 +49,7 @@ public class AddUsers {
 	@Autowired
 	Message msg;
 
-	public ResponseEntity<?> authUser(Loginrequest jwtRequest) throws Exception {
+	public ResponseEntity<?> authUser(LoginRequest jwtRequest) throws Exception {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
@@ -101,6 +107,61 @@ public class AddUsers {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse(msg.USER_REGISTERED));
+	}
+
+	// function for adding the user extra details in DB
+	public ResponseEntity<?> addingUserDetails(UserDetailsInfoRequest userDetailsInfoRequest, long userId) {
+
+		// Create new userDetails info with required details
+		UserDetailsInfo userDetails = new UserDetailsInfo(userId, userDetailsInfoRequest.getFirstName(),
+				userDetailsInfoRequest.getLastName(), userDetailsInfoRequest.getPhoneNo(),
+				userDetailsInfoRequest.getHouseNo(), userDetailsInfoRequest.getStreetNo(),
+				userDetailsInfoRequest.getLane(), userDetailsInfoRequest.getDistrict(),
+				userDetailsInfoRequest.getState(), userDetailsInfoRequest.getLandmark(),
+				userDetailsInfoRequest.getCity(), userDetailsInfoRequest.getPincode(),
+				userDetailsInfoRequest.getIdProofType(), userDetailsInfoRequest.getIdNumber());
+
+		userDetailsInfoRepository.save(userDetails);
+
+		return ResponseEntity.ok(new MessageResponse(msg.USER_INFO_ADDED));
+	}
+
+	// updating user info
+	public UserDetailsInfo updateUserInfo(UserDetailsInfo existingUserDetails, long userId) {
+
+		UserDetailsInfo existingUserDetail = this.userDetailsInfoRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
+
+		existingUserDetail.setCity(existingUserDetails.getCity());
+		existingUserDetail.setFirstName(existingUserDetails.getFirstName());
+		existingUserDetail.setLastName(existingUserDetails.getLastName());
+		existingUserDetail.setPhoneNo(existingUserDetail.getPhoneNo());
+		existingUserDetail.setHouseNo(existingUserDetails.getHouseNo());
+		existingUserDetail.setStreetNo(existingUserDetails.getStreetNo());
+		existingUserDetail.setLane(existingUserDetails.getLane());
+		existingUserDetail.setDistrict(existingUserDetails.getDistrict());
+		existingUserDetail.setState(existingUserDetails.getState());
+		existingUserDetails.setLandmark(existingUserDetails.getLandmark());
+		existingUserDetail.setIdProofType(existingUserDetails.getIdProofType());
+		existingUserDetail.setIdNumber(existingUserDetails.getIdNumber());
+
+		this.userDetailsInfoRepository.save(existingUserDetail);
+		return this.userDetailsInfoRepository.save(existingUserDetail);
+	}
+
+	// updating user credentials
+	public User updateUserCredentials(User user, long userId) {
+
+		User existingUser = this.userRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
+
+		// updating details
+		existingUser.setUsername(user.getUsername());
+		existingUser.setEmail(user.getEmail());
+		existingUser.setPassword(user.getPassword());
+
+		return this.userRepository.save(existingUser);
+
 	}
 
 }

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mindfire.rentingit.model.User;
+import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.repository.UserRepository;
 
 @Service

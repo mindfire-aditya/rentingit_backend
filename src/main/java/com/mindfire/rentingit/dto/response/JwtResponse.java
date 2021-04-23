@@ -1,4 +1,4 @@
-package com.mindfire.rentingit.payload.response;
+package com.mindfire.rentingit.dto.response;
 
 import java.util.List;
 

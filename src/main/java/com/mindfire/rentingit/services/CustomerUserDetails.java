@@ -10,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mindfire.rentingit.model.User;
+import com.mindfire.rentingit.entity.User;
 
 public class CustomerUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;

@@ -1,10 +1,10 @@
-package com.mindfire.rentingit.payload.request;
+package com.mindfire.rentingit.dto.request;
 
-public class Loginrequest {
+public class LoginRequest {
 	String username;
 	String password;
-	public Loginrequest() {}
-	public Loginrequest(String username, String password) {
+	public LoginRequest() {}
+	public LoginRequest(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
