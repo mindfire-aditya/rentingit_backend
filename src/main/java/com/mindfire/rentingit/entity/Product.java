@@ -50,7 +50,7 @@ public class Product {
 		this.ownerId = ownerId;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return Id;
 	}
 

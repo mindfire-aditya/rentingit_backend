@@ -11,6 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -25,6 +27,7 @@ import com.mindfire.rentingit.entity.Role;
 import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.entity.UserDetailsInfo;
 import com.mindfire.rentingit.exception.RepeatedUserDetails;
+import com.mindfire.rentingit.exception.ResourceNotFoundException;
 import com.mindfire.rentingit.exception.RoleNotFound;
 import com.mindfire.rentingit.helper.Jwtutil;
 import com.mindfire.rentingit.repository.RoleRepository;
@@ -131,5 +134,33 @@ public class AddUsers {
 		return ResponseEntity.ok(new MessageResponse(msg.USER_INFO_ADDED));
 	}
 	
+	//updating user info 
+	public UserDetailsInfo updateUserInfo(User user, UserDetailsInfo existingUserDetails,long userId) {
+		
+		User existingUser = this.userRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
 
+		UserDetailsInfo existingUserDetail = this.userDetailsInfoRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
+		// updating details
+		existingUser.setUsername(user.getUsername());
+		existingUser.setEmail(user.getEmail());
+		existingUser.setPassword(user.getPassword());
+
+		existingUserDetail.setCity(existingUserDetails.getCity());
+		existingUserDetail.setFirstName(existingUserDetails.getFirstName());
+		existingUserDetail.setLastName(existingUserDetails.getLastName());
+		existingUserDetail.setPhoneNo(existingUserDetail.getPhoneNo());
+		existingUserDetail.setHouseNo(existingUserDetails.getHouseNo());
+		existingUserDetail.setStreetNo(existingUserDetails.getStreetNo());
+		existingUserDetail.setLane(existingUserDetails.getLane());
+		existingUserDetail.setDistrict(existingUserDetails.getDistrict());
+		existingUserDetail.setState(existingUserDetails.getState());
+		existingUserDetails.setLandmark(existingUserDetails.getLandmark());
+		existingUserDetail.setIdProofType(existingUserDetails.getIdProofType());
+		existingUserDetail.setIdNumber(existingUserDetails.getIdNumber());
+		this.userRepository.save(existingUser);
+		this.userDetailsInfoRepository.save(existingUserDetail);
+		return this.userDetailsInfoRepository.save(existingUserDetail);
+	}
 }

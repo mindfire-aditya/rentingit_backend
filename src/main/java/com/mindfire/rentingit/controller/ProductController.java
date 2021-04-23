@@ -59,12 +59,11 @@ public class ProductController {
 	public List<Product> getProductByCategoryId(@PathVariable(value = "id") int categoryId) {
 		return this.productRepository.findByCategoryId(categoryId);
 	}
-	
+
 	@GetMapping("/ownerId/{id}")
 	public List<Product> getProductsByOwnerId(@PathVariable(value = "id") int id) {
 		return productRepository.findByOwnerId(id);
 	}
-	
 
 	// get the product based upon Parent category name
 	@GetMapping("/category/parentcategory/{parentCategoryName}")
@@ -82,10 +81,9 @@ public class ProductController {
 				() -> new ResourceNotFoundException("Child category not found with name as ::" + childCategoryName));
 
 	}
-	
-	
+
 	@GetMapping("/search/{productName}")
-	public List<Product> getProductsByProductName(@PathVariable(value = "productName") String productName){
+	public List<Product> getProductsByProductName(@PathVariable(value = "productName") String productName) {
 		return productRepository.findByProductName(productName);
 	}
 

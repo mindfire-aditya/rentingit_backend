@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users_info")
+@Table(name = "USERS_INFO")
 public class UserDetailsInfo {
 
 	@Id
@@ -36,7 +36,7 @@ public class UserDetailsInfo {
 			String lane, String district, String state, String landmark, String city, int pincode, String idProofType,
 			String idNumber,long id) {
 		super();
-		this.Id = id;
+		Id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNo = phoneNo;
@@ -56,7 +56,7 @@ public class UserDetailsInfo {
 		return Id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		Id = id;
 	}
 
