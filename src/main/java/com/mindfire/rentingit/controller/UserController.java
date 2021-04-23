@@ -61,10 +61,15 @@ public class UserController {
 	@PutMapping("/update-info/{id}")
 	public UserDetailsInfo userDetailsUpdate(@RequestBody UserDetailsInfo existingUserDetails,
 			@PathVariable("id") long userId) {
-
 		return addUser.updateUserInfo(existingUserDetails, userId);
 	}
 
+	// update user details
+	@PutMapping("/update-credentials/{id}")
+	public User userCredentialsUpdate(@RequestBody User user,@PathVariable("id") long userId) {
+		return addUser.updateUserCredentials(user, userId);
+	}
+	
 	// get user details by id
 	@GetMapping("/view-info/{id}")
 	public UserDetailsInfo getUserDetailsById(@PathVariable(value = "id") long userId) {

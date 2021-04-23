@@ -110,35 +110,30 @@ public class AddUsers {
 
 		return ResponseEntity.ok(new MessageResponse(msg.USER_REGISTERED));
 	}
-	
+
 	// function for adding the user extra details in DB
 	public ResponseEntity<?> addingUserDetails(UserDetailsInfoRequest userDetailsInfoRequest, long userId) {
-		
+
 		// Create new userDetails info with required details
 		UserDetailsInfo userDetails = new UserDetailsInfo(userDetailsInfoRequest.getFirstName(),
-														  userDetailsInfoRequest.getLastName(),
-														  userDetailsInfoRequest.getPhoneNo(),
-														  userDetailsInfoRequest.getHouseNo(),
-														  userDetailsInfoRequest.getStreetNo(),
-														  userDetailsInfoRequest.getLane(),
-														  userDetailsInfoRequest.getDistrict(),
-														  userDetailsInfoRequest.getState(),
-														  userDetailsInfoRequest.getLandmark(),
-														  userDetailsInfoRequest.getCity(),
-														  userDetailsInfoRequest.getPincode(),
-														  userDetailsInfoRequest.getIdProofType(),
-														  userDetailsInfoRequest.getIdNumber(),userId);
+				userDetailsInfoRequest.getLastName(), userDetailsInfoRequest.getPhoneNo(),
+				userDetailsInfoRequest.getHouseNo(), userDetailsInfoRequest.getStreetNo(),
+				userDetailsInfoRequest.getLane(), userDetailsInfoRequest.getDistrict(),
+				userDetailsInfoRequest.getState(), userDetailsInfoRequest.getLandmark(),
+				userDetailsInfoRequest.getCity(), userDetailsInfoRequest.getPincode(),
+				userDetailsInfoRequest.getIdProofType(), userDetailsInfoRequest.getIdNumber(), userId);
 
 		userDetailsInfoRepository.save(userDetails);
 
 		return ResponseEntity.ok(new MessageResponse(msg.USER_INFO_ADDED));
 	}
-	
-	//updating user info 
-	public UserDetailsInfo updateUserInfo(UserDetailsInfo existingUserDetails,long userId) {
-		
-		//User existingUser = this.userRepository.findById(userId)
-				//.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
+
+	// updating user info
+	public UserDetailsInfo updateUserInfo(UserDetailsInfo existingUserDetails, long userId) {
+
+		// User existingUser = this.userRepository.findById(userId)
+		// .orElseThrow(() -> new ResourceNotFoundException("User not found with id : "
+		// + userId));
 
 		UserDetailsInfo existingUserDetail = this.userDetailsInfoRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
@@ -163,4 +158,20 @@ public class AddUsers {
 		this.userDetailsInfoRepository.save(existingUserDetail);
 		return this.userDetailsInfoRepository.save(existingUserDetail);
 	}
+
+	// updating user credentials
+	public User updateUserCredentials(User user, long userId) {
+
+		User existingUser = this.userRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
+
+		// updating details
+		existingUser.setUsername(user.getUsername());
+		existingUser.setEmail(user.getEmail());
+		existingUser.setPassword(user.getPassword());
+
+		return this.userRepository.save(existingUser);
+
+	}
+
 }
