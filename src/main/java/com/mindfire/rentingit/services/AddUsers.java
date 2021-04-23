@@ -67,6 +67,7 @@ public class AddUsers {
 
 	// function for checking alredy existing user as well as adding new user
 	public ResponseEntity<?> addingUser(SignupRequest signuprequest) {
+		
 		if (userRepository.existsByUsername(signuprequest.getUsername())) {
 			return ResponseEntity.ok(new RepeatedUserDetails(msg.USERNAME_TAKEN));
 
@@ -91,16 +92,25 @@ public class AddUsers {
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
+				
+				case "user":
+						Role userRole = roleRepository.findByName(Erole.ROLE_USER)
+						.orElseThrow(() -> new RoleNotFound(msg.ROLE_NOT_FOUND));
+					roles.add(userRole);
+					break;
 				case "admin":
 					Role adminRole = roleRepository.findByName(Erole.ROLE_ADMIN)
 							.orElseThrow(() -> new RoleNotFound(msg.ROLE_NOT_FOUND));
 					roles.add(adminRole);
 					break;
 				default:
-					Role userRole = roleRepository.findByName(Erole.ROLE_USER)
-							.orElseThrow(() -> new RoleNotFound(msg.ROLE_NOT_FOUND));
-					roles.add(userRole);
+//					Role userRole = roleRepository.findByName(Erole.ROLE_USER)
+//							.orElseThrow(() -> new RoleNotFound(msg.ROLE_NOT_FOUND));
+//					roles.add(userRole);
+					throw new RoleNotFound(msg.ROLE_NOT_FOUND);
 				}
+				
+
 			});
 		}
 		user.setRoles(roles);
