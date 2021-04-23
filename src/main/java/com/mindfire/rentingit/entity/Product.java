@@ -27,9 +27,9 @@ public class Product {
 	private int categoryId;
 	private int ownerId;
 
-	public Product() {}
+	public Product() {
+	}
 
-	
 	public Product(String productName, String maintainanceTime, String assetStatus, String assetDescription,
 			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
 			int pinCode, int categoryId, int ownerId) {
@@ -48,9 +48,6 @@ public class Product {
 		this.categoryId = categoryId;
 		this.ownerId = ownerId;
 	}
-
-
-
 
 	public long getId() {
 		return Id;
