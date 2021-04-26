@@ -57,7 +57,6 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/rentingIt/resources/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
 				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
-				.antMatchers("/rentingIt/product/category/parentcategory/**").permitAll()
 				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
 				.antMatchers("/rentingIt/product/category/all/**").permitAll()
 				.antMatchers("/rentingIt/product/search/**").permitAll()
