@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
@@ -109,5 +112,4 @@ public class Order {
 		this.productId = productId;
 	}
 
-	
 }

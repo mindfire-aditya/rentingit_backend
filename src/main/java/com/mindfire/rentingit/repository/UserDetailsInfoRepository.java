@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

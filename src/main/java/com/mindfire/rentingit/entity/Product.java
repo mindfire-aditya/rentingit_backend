@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;

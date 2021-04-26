@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.dto.response;
 
 import java.util.List;

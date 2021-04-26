@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.services;
 
 import java.util.HashSet;
@@ -67,7 +70,7 @@ public class AddUsers {
 
 	// function for checking alredy existing user as well as adding new user
 	public ResponseEntity<?> addingUser(SignupRequest signuprequest) {
-		
+
 		if (userRepository.existsByUsername(signuprequest.getUsername())) {
 			return ResponseEntity.ok(new RepeatedUserDetails(msg.USERNAME_TAKEN));
 
@@ -92,10 +95,10 @@ public class AddUsers {
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-				
+
 				case "user":
-						Role userRole = roleRepository.findByName(Erole.ROLE_USER)
-						.orElseThrow(() -> new RoleNotFound(msg.ROLE_NOT_FOUND));
+					Role userRole = roleRepository.findByName(Erole.ROLE_USER)
+							.orElseThrow(() -> new RoleNotFound(msg.ROLE_NOT_FOUND));
 					roles.add(userRole);
 					break;
 				case "admin":
@@ -109,7 +112,6 @@ public class AddUsers {
 //					roles.add(userRole);
 					throw new RoleNotFound(msg.ROLE_NOT_FOUND);
 				}
-				
 
 			});
 		}

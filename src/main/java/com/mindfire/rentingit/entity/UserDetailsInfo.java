@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
@@ -13,7 +16,7 @@ public class UserDetailsInfo {
 
 	@Id
 	private long Id;
-	
+
 	private String firstName;
 	private String lastName;
 	private long phoneNo;
@@ -28,12 +31,9 @@ public class UserDetailsInfo {
 	private String idProofType;
 	private String idNumber;
 
-	
 	public UserDetailsInfo() {
 
 	}
-
-	
 
 	public UserDetailsInfo(long id, String firstName, String lastName, long phoneNo, int houseNo, int streetNo,
 			String lane, String district, String state, String landmark, String city, int pincode, String idProofType,
@@ -53,10 +53,8 @@ public class UserDetailsInfo {
 		this.pincode = pincode;
 		this.idProofType = idProofType;
 		this.idNumber = idNumber;
-		
+
 	}
-
-
 
 	public long getId() {
 		return Id;
@@ -169,6 +167,5 @@ public class UserDetailsInfo {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
-	
 
 }

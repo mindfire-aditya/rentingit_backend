@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.repository;
 
 import java.util.List;
@@ -11,6 +14,6 @@ import com.mindfire.rentingit.entity.Order;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
 	List<Order> findByOwnerId(int ownerId);
-	
+
 	List<Order> findByCustomerId(int customerId);
 }

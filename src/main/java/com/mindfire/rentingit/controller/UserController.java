@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.controller;
 
 import java.util.List;
@@ -65,17 +68,15 @@ public class UserController {
 
 	// update user details
 	@PutMapping("/update-credentials/{id}")
-	public User userCredentialsUpdate(@RequestBody User user,@PathVariable("id") long userId) {
+	public User userCredentialsUpdate(@RequestBody User user, @PathVariable("id") long userId) {
 		return addUser.updateUserCredentials(user, userId);
 	}
-	
+
 	// get user details by id
 	@GetMapping("/view-info/{id}")
 	public UserDetailsInfo getUserDetailsById(@PathVariable(value = "id") long userId) {
 		return this.userDetailsInfoRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
 	}
-
-
 
 }

@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.exception;
 
 public class RoleNotFound extends RuntimeException {

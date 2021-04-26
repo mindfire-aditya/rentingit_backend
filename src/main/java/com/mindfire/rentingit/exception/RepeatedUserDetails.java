@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.exception;
 
 import org.springframework.http.HttpStatus;

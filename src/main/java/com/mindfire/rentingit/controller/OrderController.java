@@ -1,3 +1,6 @@
+/*
+ * @author Ujjwal Kumar
+ */
 package com.mindfire.rentingit.controller;
 
 import java.util.List;
@@ -22,44 +25,43 @@ import com.mindfire.rentingit.repository.OrderRepository;
 @RestController
 @RequestMapping("/rentingIt/order")
 public class OrderController {
-	
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	// get all orders
 	@GetMapping("/all")
 	public List<Order> getAllOrders() {
 		return this.orderRepository.findAll();
 	}
-	
-    // get order by id
+
+	// get order by id
 	@GetMapping("/{id}")
-	public Order getOrderById(@PathVariable (value = "id") long orderId) {
+	public Order getOrderById(@PathVariable(value = "id") long orderId) {
 		return this.orderRepository.findById(orderId)
 				.orElseThrow(() -> new ResourceNotFoundException("Order not found with id :" + orderId));
 	}
 
 	// update order details
 	@PutMapping("/{id}")
-	public Order updateOrder(@RequestBody Order order, @PathVariable ("id") long orderId) {
-		 Order existingOrder = this.orderRepository.findById(orderId)
-			.orElseThrow(() -> new ResourceNotFoundException("Order not found with id :" + orderId));
-		 existingOrder.setRentStartDate(existingOrder.getRentStartDate());
-		 existingOrder.setRentEndDate(existingOrder.getRentEndDate());
-		 existingOrder.setRentMode(existingOrder.getRentMode());
-		 existingOrder.setTotalAmount(existingOrder.getTotalAmount());
+	public Order updateOrder(@RequestBody Order order, @PathVariable("id") long orderId) {
+		Order existingOrder = this.orderRepository.findById(orderId)
+				.orElseThrow(() -> new ResourceNotFoundException("Order not found with id :" + orderId));
+		existingOrder.setRentStartDate(existingOrder.getRentStartDate());
+		existingOrder.setRentEndDate(existingOrder.getRentEndDate());
+		existingOrder.setRentMode(existingOrder.getRentMode());
+		existingOrder.setTotalAmount(existingOrder.getTotalAmount());
 
-		 return this.orderRepository.save(existingOrder);
+		return this.orderRepository.save(existingOrder);
 	}
-	
+
 	// delete order by id
 	@DeleteMapping("/{id}")
-	public ResponseEntity<User> deleteOder(@PathVariable ("id") long orderId){
+	public ResponseEntity<User> deleteOder(@PathVariable("id") long orderId) {
 		Order existingOrder = this.orderRepository.findById(orderId)
-					.orElseThrow(() -> new ResourceNotFoundException("Order not found with id :" + orderId));
-		 this.orderRepository.delete(existingOrder);
-		 return ResponseEntity.ok().build();
+				.orElseThrow(() -> new ResourceNotFoundException("Order not found with id :" + orderId));
+		this.orderRepository.delete(existingOrder);
+		return ResponseEntity.ok().build();
 	}
 
 }
