@@ -110,6 +110,7 @@ public class ProductController {
 
 	}
 
+	//get categories by child category name
 	@GetMapping("/category/childcategory/{childCategoryName}")
 	public Category getProductByChildCategoryName(@PathVariable(value = "childCategoryName") String childCategoryName) {
 		return this.categoryRepository.findByChildCategory(childCategoryName).orElseThrow(
