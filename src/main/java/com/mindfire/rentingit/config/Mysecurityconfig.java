@@ -58,6 +58,7 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/rentingIt/resources/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
 				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
 				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
+				.antMatchers("/rentingIt/product/category/all/**").permitAll()
 				.antMatchers("/rentingIt/product/search/**").permitAll()
 				.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
 						"/swagger-ui.html", "/webjars/**")
