@@ -25,7 +25,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private long Id;
 
 	private String email;
 
@@ -47,11 +47,11 @@ public class User {
 		this.username = username;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return Id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.Id = id;
 	}
 

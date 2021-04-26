@@ -20,6 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	List<Product> findByProductName(String name);
 
-	List<Product> findByOwnerId(int ownerId);
+	List<Product> findByOwnerId(int userId);
+
 
 }

@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,10 +56,21 @@ public class ProductController {
 
 	}
 
-	// method for deleting the registered products based upon id
-	@DeleteMapping("/delete-registered-product-by-id/{id}")
-	public ResponseEntity<Product> deleteProducts(@PathVariable("id") long productId) {
+	// method for deleting the registered products based upon owner id and product id
+	@DeleteMapping("/delete-owner-registered-product-by-id/{productId}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> deleteProducts(@PathVariable("productId") long productId) {
+
 		return addProducts.deleteProductsById(productId);
+
+	}
+
+	// method for deleting the registered products based upon owner id and product id
+	@DeleteMapping("/delete-registered-product-by-id/{productId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> deleteProductsByID(@PathVariable("productId") long productId) {
+
+		return addProducts.deleteProducts(productId);
 
 	}
 
@@ -95,9 +107,10 @@ public class ProductController {
 		return this.productRepository.findByCategoryId(categoryId);
 	}
 
-	@GetMapping("/ownerId/{id}")
-	public List<Product> getProductsByOwnerId(@PathVariable(value = "id") int id) {
-		return productRepository.findByOwnerId(id);
+	@GetMapping("/currently-loggedin")
+	public List<Product> getProductsOwnedByCurrentUser() {
+		return addProducts.findProductsOfUser();
+
 	}
 
 	// get the product based upon Parent category name

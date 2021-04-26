@@ -14,5 +14,7 @@ public class Message {
 	public final String USER_REGISTERED = "User registered successfully! !";
 	public final String USER_INFO_ADDED = "User details are added successfully! !";
 	public final String PRODUCTS_ADDED = "Product and its details are added successfully! !";
-
+	public final String PRODUCTS_DELETED = "Product and its details are deleted successfully! !";
+	public final String CANT_DELETE_PROD = "Sorry you cant delete this products! !";
+	
 }

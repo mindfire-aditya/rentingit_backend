@@ -55,11 +55,13 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(entryPoint).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/rentingIt/resources/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
+				.antMatchers("/rentingIt/resources/**").permitAll().antMatchers("/rentingIt/user/signup/**").permitAll()
+				.antMatchers("/rentingIt/user/signin/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
 				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
 				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
 				.antMatchers("/rentingIt/product/category/all/**").permitAll()
 				.antMatchers("/rentingIt/product/search/**").permitAll()
+
 				.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
 						"/swagger-ui.html", "/webjars/**")
 				.permitAll().anyRequest().authenticated();
