@@ -75,6 +75,7 @@ public class AddProducts {
 	}
 
 	// method for deleting the registered products based upon id by user
+	// it will take product id and based upon the owner it will show to the respective owner 
 	public ResponseEntity<?> deleteProductsById(long productId) {
 		// checking for the request if it is made by the current loggedIn user or not
 
