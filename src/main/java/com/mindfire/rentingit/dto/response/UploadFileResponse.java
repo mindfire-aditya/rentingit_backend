@@ -1,17 +1,30 @@
 package com.mindfire.rentingit.dto.response;
 
 public class UploadFileResponse {
+	private String successMsg;
 	private String fileName;
     private String fileDownloadUri;
     private String fileType;
     private long size;
 
-    public UploadFileResponse(String fileName, String fileDownloadUri, String fileType, long size) {
-        this.fileName = fileName;
+    public UploadFileResponse(String successMsg,String fileName, String fileDownloadUri, String fileType, long size) {
+        this.successMsg = successMsg;
+    	this.fileName = fileName;
         this.fileDownloadUri = fileDownloadUri;
         this.fileType = fileType;
         this.size = size;
     }
+    
+
+	public String getSuccessMsg() {
+		return successMsg;
+	}
+
+
+	public void setSuccessMsg(String successMsg) {
+		this.successMsg = successMsg;
+	}
+
 
 	public String getFileName() {
 		return fileName;

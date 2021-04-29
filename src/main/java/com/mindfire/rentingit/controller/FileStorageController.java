@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.mindfire.rentingit.constants.Message;
 import com.mindfire.rentingit.dto.response.UploadFileResponse;
 import com.mindfire.rentingit.services.FileStorageService;
 
@@ -33,6 +34,9 @@ public class FileStorageController {
 	@Autowired
     private FileStorageService fileStorageService;
 	
+	@Autowired
+	private Message msg;
+	
 	 @PostMapping("/upload-single-file")
     public UploadFileResponse uploadSingleFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
@@ -42,7 +46,7 @@ public class FileStorageController {
                 .path(fileName)
                 .toUriString();
 
-        return new UploadFileResponse(fileName, fileDownloadUri,
+        return new UploadFileResponse(msg.FILE_UPLOADED,fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
 	 

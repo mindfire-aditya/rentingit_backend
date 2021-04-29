@@ -16,5 +16,8 @@ public class Message {
 	public final String PRODUCTS_ADDED = "Product and its details are added successfully! !";
 	public final String PRODUCTS_DELETED = "Product and its details are deleted successfully! !";
 	public final String CANT_DELETE_PROD = "Sorry you cant delete this products! !";
+	public final String FILE_UPLOADED = "File uploaded successfully !!";
+	public final String FILES_UPLOADED = "Files uploaded successfully !!";
+	
 	
 }
