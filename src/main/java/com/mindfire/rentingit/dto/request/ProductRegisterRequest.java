@@ -6,6 +6,7 @@ package com.mindfire.rentingit.dto.request;
 public class ProductRegisterRequest {
 
 	private String productName;
+	private String actualName;
 	private String maintainanceTime;
 	private String assetStatus;
 	private String assetDescription;
@@ -25,6 +26,14 @@ public class ProductRegisterRequest {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	public String getActualName() {
+		return actualName;
+	}
+
+	public void setActualName(String actualName) {
+		this.actualName = actualName;
 	}
 
 	public String getMaintainanceTime() {

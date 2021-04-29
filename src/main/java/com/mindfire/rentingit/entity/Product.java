@@ -17,6 +17,7 @@ public class Product {
 	private long Id;
 
 	private String productName;
+	private String actualName;
 	private String maintainanceTime;
 	private String assetStatus;
 	private String assetDescription;
@@ -33,11 +34,12 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String productName, String maintainanceTime, String assetStatus, String assetDescription,
+	public Product(String productName,String actualName, String maintainanceTime, String assetStatus, String assetDescription,
 			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
 			int pinCode, int categoryId, int ownerId) {
 		super();
 		this.productName = productName;
+		this.actualName = actualName;
 		this.maintainanceTime = maintainanceTime;
 		this.assetStatus = assetStatus;
 		this.assetDescription = assetDescription;
@@ -66,6 +68,15 @@ public class Product {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	
+	public String getActualName() {
+		return actualName;
+	}
+
+	public void setActualName(String actualName) {
+		this.actualName = actualName;
 	}
 
 	public String getMaintainanceTime() {

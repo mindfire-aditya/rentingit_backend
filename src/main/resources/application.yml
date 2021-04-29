@@ -12,6 +12,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
+  multipart:
+    enabled: true
+    file-size-threshold: 2KB
+    max-file-size: 300MB
+    max-request-size: 315MB 
+    
     
   
 server:
@@ -22,4 +28,5 @@ pass:
     jwtExpirationMs: 86400000
     
   
+file.upload-dir: C:/Users/mindfire/Documents/GitHub/rentingit_backend/src/main/resources/Upload
 

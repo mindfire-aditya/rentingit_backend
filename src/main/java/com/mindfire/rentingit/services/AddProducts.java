@@ -4,7 +4,6 @@
 package com.mindfire.rentingit.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +34,9 @@ public class AddProducts {
 	// function for adding the product details in DB
 	public ResponseEntity<?> addingProductDetails(ProductRegisterRequest productRegisterRequest) {
 
-		// Create new userDetails info with required details
+		// Create new product info with required details
 		Product newProducts = new Product(productRegisterRequest.getProductName(),
+				productRegisterRequest.getActualName(),
 				productRegisterRequest.getMaintainanceTime(), productRegisterRequest.getAssetStatus(),
 				productRegisterRequest.getAssetDescription(), productRegisterRequest.getImageUrl(),
 				productRegisterRequest.getUnits(), productRegisterRequest.getPricePerHour(),
@@ -57,6 +57,7 @@ public class AddProducts {
 
 		// updating the values
 		existingProduct.setProductName(productRegisterRequest.getProductName());
+		existingProduct.setActualName(productRegisterRequest.getActualName());
 		existingProduct.setMaintainanceTime(productRegisterRequest.getMaintainanceTime());
 		existingProduct.setAssetStatus(productRegisterRequest.getAssetStatus());
 		existingProduct.setAssetDescription(productRegisterRequest.getAssetDescription());
