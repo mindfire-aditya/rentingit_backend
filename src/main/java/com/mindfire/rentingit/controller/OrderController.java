@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mindfire.rentingit.dto.request.OrderRequest;
 import com.mindfire.rentingit.entity.Order;
 import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.exception.ResourceNotFoundException;
@@ -70,8 +71,20 @@ public class OrderController {
 	}
 	
 	@PostMapping(value = "/new-order")
-	public String placeOrder(@RequestBody Order newOrder) {
-		return  addOrder.addNewOrder();
+	public String placeOrder(@RequestBody OrderRequest newOrder) {
+		return  addOrder.addNewOrder(newOrder);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

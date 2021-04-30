@@ -3,6 +3,8 @@
  */
 package com.mindfire.rentingit.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,25 +22,31 @@ public class Order {
 	private int ownerId;
 	private int customerId;
 	private int productId;
-	private String rentStartDate;
-	private String rentEndDate;
+	private LocalDateTime rentStartDate;
+	private LocalDateTime rentEndDate;
 	private String rentMode;
-	private String agreementUrl;
+	private boolean agreedToTermsAndConditions;
 	private int totalAmount;
 
 	public Order() {
 	}
 
-	public Order(Long id, String rentStartDate, String rentEndDate, String rentMode, String agreementUrl,
-			int totalAmount) {
+
+	public Order(Long id, int ownerId, int customerId, int productId, LocalDateTime rentStartDate,
+			LocalDateTime rentEndDate, String rentMode, boolean agreedToTermsAndConditions, int totalAmount) {
 		super();
-		this.Id = id;
+		Id = id;
+		this.ownerId = ownerId;
+		this.customerId = customerId;
+		this.productId = productId;
 		this.rentStartDate = rentStartDate;
 		this.rentEndDate = rentEndDate;
 		this.rentMode = rentMode;
-		this.agreementUrl = agreementUrl;
+		this.agreedToTermsAndConditions = agreedToTermsAndConditions;
 		this.totalAmount = totalAmount;
 	}
+
+
 
 	public Long getId() {
 		return Id;
@@ -48,19 +56,19 @@ public class Order {
 		Id = id;
 	}
 
-	public String getRentStartDate() {
+	public LocalDateTime getRentStartDate() {
 		return rentStartDate;
 	}
 
-	public void setRentStartDate(String rentStartDate) {
+	public void setRentStartDate(LocalDateTime rentStartDate) {
 		this.rentStartDate = rentStartDate;
 	}
 
-	public String getRentEndDate() {
+	public LocalDateTime getRentEndDate() {
 		return rentEndDate;
 	}
 
-	public void setRentEndDate(String rentEndDate) {
+	public void setRentEndDate(LocalDateTime rentEndDate) {
 		this.rentEndDate = rentEndDate;
 	}
 
@@ -70,14 +78,6 @@ public class Order {
 
 	public void setRentMode(String rentMode) {
 		this.rentMode = rentMode;
-	}
-
-	public String getAgreementUrl() {
-		return agreementUrl;
-	}
-
-	public void setAgreementUrl(String agreementUrl) {
-		this.agreementUrl = agreementUrl;
 	}
 
 	public int getTotalAmount() {
@@ -110,6 +110,24 @@ public class Order {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+
+
+	public boolean isAgreedToTermsAndConditions() {
+		return agreedToTermsAndConditions;
+	}
+
+
+	public void setAgreedToTermsAndConditions(boolean agreedToTermsAndConditions) {
+		this.agreedToTermsAndConditions = agreedToTermsAndConditions;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Order [Id=" + Id + ", ownerId=" + ownerId + ", customerId=" + customerId + ", productId=" + productId
+				+ ", rentStartDate=" + rentStartDate + ", rentEndDate=" + rentEndDate + ", rentMode=" + rentMode
+				+ ", agreedToTermsAndConditions=" + agreedToTermsAndConditions + ", totalAmount=" + totalAmount + "]";
 	}
 
 }
