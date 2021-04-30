@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.mindfire.rentingit.constants.Message;
 import com.mindfire.rentingit.dto.response.UploadFileResponse;
 import com.mindfire.rentingit.services.FileStorageService;
 
@@ -33,8 +34,11 @@ public class FileStorageController {
 	@Autowired
     private FileStorageService fileStorageService;
 	
-	 @PostMapping("/upload-single-file")
-    public UploadFileResponse uploadSingleFile(@RequestParam("file") MultipartFile file) {
+	@Autowired
+	private Message msg;
+	
+	@PostMapping("/upload-single-image")
+    public UploadFileResponse uploadSingleImage(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -42,22 +46,22 @@ public class FileStorageController {
                 .path(fileName)
                 .toUriString();
 
-        return new UploadFileResponse(fileName, fileDownloadUri,
+        return new UploadFileResponse(msg.FILE_UPLOADED, fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
 	 
-	 @PostMapping("/upload-multiple-files")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> uploadSingleFile(file))
-                .collect(Collectors.toList());
+	@PostMapping("/upload-multiple-images")
+	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+		 return Arrays.asList(files)
+	                .stream()
+	                .map(file -> uploadSingleImage(file))
+	                .collect(Collectors.toList());
     }
 
-    @GetMapping("/download-file/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+    @GetMapping("/download-image/{imgName:.+}")
+    public ResponseEntity<Resource> downloadImage(@PathVariable String imgName, HttpServletRequest request) {
         // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
+        Resource resource = fileStorageService.loadFileAsResource(imgName);
 
         // Try to determine file's content type
         String contentType = null;
