@@ -18,6 +18,7 @@ public class Message {
 	public final String CANT_DELETE_PROD = "Sorry you cant delete this products! !";
 	public final String FILE_UPLOADED = "File uploaded successfully !!";
 	public final String FILES_UPLOADED = "Files uploaded successfully !!";
+	public final String EMPTY_FILE_SELECTED = "Sorry no file is selected!!";
 	
 	
 }

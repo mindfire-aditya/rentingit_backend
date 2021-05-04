@@ -38,8 +38,13 @@ public class FileStorageController {
 	private Message msg;
 	
 	@PostMapping("/upload-single-image")
-    public UploadFileResponse uploadSingleImage(@RequestParam("file") MultipartFile file) {
-        String fileName = fileStorageService.storeFile(file);
+    public UploadFileResponse uploadSingleImage(@RequestParam("file") MultipartFile file) throws IOException  {
+		
+		if(file.isEmpty()) {
+	        return new UploadFileResponse(msg.EMPTY_FILE_SELECTED, null, null,null, 0);
+		}
+
+		String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/download-file/")
@@ -48,13 +53,22 @@ public class FileStorageController {
 
         return new UploadFileResponse(msg.FILE_UPLOADED, fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
+		
     }
 	 
 	@PostMapping("/upload-multiple-images")
 	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
 		 return Arrays.asList(files)
 	                .stream()
-	                .map(file -> uploadSingleImage(file))
+	                .map(file -> {
+						try {
+							return uploadSingleImage(file);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return null;
+					})
 	                .collect(Collectors.toList());
     }
 
