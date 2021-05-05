@@ -27,15 +27,14 @@ public class Order {
 	private String rentMode;
 	private boolean agreedToTermsAndConditions;
 	private int totalAmount;
+	private int units;
 
 	public Order() {
 	}
 
-
-	public Order(Long id, int ownerId, int customerId, int productId, LocalDateTime rentStartDate,
-			LocalDateTime rentEndDate, String rentMode, boolean agreedToTermsAndConditions, int totalAmount) {
+	public Order(int ownerId, int customerId, int productId, LocalDateTime rentStartDate, LocalDateTime rentEndDate,
+			String rentMode, boolean agreedToTermsAndConditions, int totalAmount,int units) {
 		super();
-		Id = id;
 		this.ownerId = ownerId;
 		this.customerId = customerId;
 		this.productId = productId;
@@ -44,9 +43,8 @@ public class Order {
 		this.rentMode = rentMode;
 		this.agreedToTermsAndConditions = agreedToTermsAndConditions;
 		this.totalAmount = totalAmount;
+		this.units = units;
 	}
-
-
 
 	public Long getId() {
 		return Id;
@@ -54,6 +52,15 @@ public class Order {
 
 	public void setId(Long id) {
 		Id = id;
+	}
+
+	
+	public int getUnits() {
+		return units;
+	}
+
+	public void setUnits(int units) {
+		this.units = units;
 	}
 
 	public LocalDateTime getRentStartDate() {
@@ -112,22 +119,20 @@ public class Order {
 		this.productId = productId;
 	}
 
-
 	public boolean isAgreedToTermsAndConditions() {
 		return agreedToTermsAndConditions;
 	}
 
-
 	public void setAgreedToTermsAndConditions(boolean agreedToTermsAndConditions) {
 		this.agreedToTermsAndConditions = agreedToTermsAndConditions;
 	}
-
+	
 
 	@Override
 	public String toString() {
 		return "Order [Id=" + Id + ", ownerId=" + ownerId + ", customerId=" + customerId + ", productId=" + productId
 				+ ", rentStartDate=" + rentStartDate + ", rentEndDate=" + rentEndDate + ", rentMode=" + rentMode
-				+ ", agreedToTermsAndConditions=" + agreedToTermsAndConditions + ", totalAmount=" + totalAmount + "]";
+				+ ", agreedToTermsAndConditions=" + agreedToTermsAndConditions + ", totalAmount=" + totalAmount + ",units = "+ units +"]";
 	}
 
 }

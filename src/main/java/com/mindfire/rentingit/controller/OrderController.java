@@ -41,6 +41,13 @@ public class OrderController {
 		return this.orderRepository.findAll();
 	}
 
+	
+	// get all orders
+	@GetMapping("/all/{id}")
+	public List<Order> getAllCustomOders(@PathVariable(value = "id") int cId) {
+		return this.orderRepository.findByCustomerId(cId);
+	}
+	
 	// get order by id
 	@GetMapping("/{id}")
 	public Order getOrderById(@PathVariable(value = "id") long orderId) {
@@ -71,8 +78,8 @@ public class OrderController {
 	}
 	
 	@PostMapping(value = "/new-order")
-	public String placeOrder(@RequestBody OrderRequest newOrder) {
-		return  addOrder.addNewOrder(newOrder);
+	public ResponseEntity<?> placeOrder(@RequestBody OrderRequest addNewOrder) {
+		return  addOrder.addNewOrder(addNewOrder);
 	}
 	
 	

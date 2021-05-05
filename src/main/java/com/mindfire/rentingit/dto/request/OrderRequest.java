@@ -5,23 +5,26 @@ import java.time.LocalDateTime;
 public class OrderRequest {
 	
 	private int ownerId;
-	private int productId;
+
 	private int customerId;
-	private String rent_mode;
-	private int units;
+	private int productId;
 	private LocalDateTime start_datetime;
 	private LocalDateTime end_datetime;
+	private String rent_mode;
 	private boolean agreed_to_terms_and_conditions;
 	private int total_amount;
+	private int units;
+
+
 	
 	
 	public OrderRequest() {
 		super();
 	}
 	
-	public OrderRequest(int ownerId, int productId, int customerId, String rent_mode, int units,
+	public OrderRequest(int ownerId, int productId, int customerId, String rent_mode,
 			LocalDateTime start_datetime, LocalDateTime end_datetime, boolean agreed_to_terms_and_conditions,
-			int total_amount) {
+			int total_amount,int units) {
 		super();
 		this.ownerId = ownerId;
 		this.productId = productId;
@@ -83,11 +86,11 @@ public class OrderRequest {
 		this.customerId = customerId;
 	}
 
-	public boolean isAgreed_to_terms_and_conditions() {
+	public boolean isAgreedToTermsAndConditions() {
 		return agreed_to_terms_and_conditions;
 	}
 
-	public void setAgreed_to_terms_and_conditions(boolean agreed_to_terms_and_conditions) {
+	public void setAgreedToTermsAndConditions(boolean agreed_to_terms_and_conditions) {
 		this.agreed_to_terms_and_conditions = agreed_to_terms_and_conditions;
 	}
 
@@ -98,6 +101,7 @@ public class OrderRequest {
 	public void setTotal_amount(int total_amount) {
 		this.total_amount = total_amount;
 	}
+	
 	
 	
 }
