@@ -28,5 +28,7 @@ pass:
     jwtExpirationMs: 86400000
     
   
-file.upload-dir: C:/Users/mindfire/Documents/GitHub/rentingit_backend/src/main/resources/Upload
+file:
+  base-dir: C:/Users/mindfire/Documents/GitHub/
+  upload-dir: rentingit_backend/src/main/resources/Upload
 

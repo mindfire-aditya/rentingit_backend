@@ -1,11 +1,13 @@
 package com.mindfire.rentingit.services;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -25,7 +27,7 @@ public class FileStorageService {
 
 	@Autowired
 	public FileStorageService(FileStorageConfig fileStoragePojo) {
-		this.fileStorageLocation = Paths.get(fileStoragePojo.getUploadDir()).toAbsolutePath().normalize();
+		this.fileStorageLocation = Paths.get(fileStoragePojo.getBaseDir()+fileStoragePojo.getUploadDir()).toAbsolutePath().normalize();
 
 		try {
 			Files.createDirectories(this.fileStorageLocation);
@@ -37,7 +39,8 @@ public class FileStorageService {
 
 	public String storeFile(MultipartFile file) {
 		// Normalize file name
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
+		fileName  = fileName.replaceAll(":","_");
 
 		try {
 			// Check if the file's name contains invalid characters
@@ -54,8 +57,31 @@ public class FileStorageService {
 			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
 		}
 	}
+	
+	
+	//getting image path
+	public Path getPath(MultipartFile file) {
+		// Normalize file name
+		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
+		fileName  = fileName.replaceAll(":","_");
 
-	public Resource loadFileAsResource(String fileName) {
+		try {
+			// Check if the file's name contains invalid characters
+			if (fileName.contains("..")) {
+				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+			}
+
+			// Copy file to the target location (Replacing existing file with the same name)
+			Path targetLocation = this.fileStorageLocation.resolve(fileName);
+			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+			return targetLocation;
+		} catch (IOException ex) {
+			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+		}
+	}
+
+	public Resource loadFileAsResource(String fileName) throws IOException {
 		try {
 			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
 			Resource resource = new UrlResource(filePath.toUri());
@@ -67,5 +93,37 @@ public class FileStorageService {
 		} catch (MalformedURLException ex) {
 			throw new ResourceNotFoundException("File not found " + fileName, ex);
 		}
+	}
+	
+	public byte[] getByteOfImage(String fileName) throws IOException{
+		try {
+			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+			Resource resource = new UrlResource(filePath.toUri());
+			if (resource.exists()) {
+				
+				File f = new File(resource.getFile().getAbsolutePath());
+				byte[] data = Files.readAllBytes(f.toPath());
+				return data;
+			} else {
+				throw new ResourceNotFoundException("File not found " + fileName);
+			}
+		} catch (MalformedURLException ex) {
+			throw new ResourceNotFoundException("File not found " + fileName, ex);
+		}
+	}
+	
+	public Path getPathByImageName(String fileName) throws IOException{
+		try {
+			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+			Resource resource = new UrlResource(filePath.toUri());
+			if (resource.exists()) {
+				return filePath;
+			} else {
+				throw new ResourceNotFoundException("File not found " + fileName);
+			}
+		} catch (MalformedURLException ex) {
+			throw new ResourceNotFoundException("File not found " + fileName, ex);
+		}
+		
 	}
 }

@@ -3,8 +3,14 @@
  */
 package com.mindfire.rentingit.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -134,5 +140,6 @@ public class ProductController {
 	public List<Product> getProductsByProductName(@PathVariable(value = "productName") String productName) {
 		return productRepository.findByProductName(productName);
 	}
+	
 
 }
