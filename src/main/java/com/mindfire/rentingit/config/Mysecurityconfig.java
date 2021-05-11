@@ -60,6 +60,7 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
 				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
 				.antMatchers("/rentingIt/product/category/all/**").permitAll()
+				.antMatchers("/rentingIt/product/all/**").permitAll()
 				.antMatchers("/rentingIt/product/search/**").permitAll()
 				.antMatchers("/rentingIt/product/resources/download-image/*").permitAll()
 				.antMatchers("/rentingIt/product/resources/get-image/*").permitAll()
