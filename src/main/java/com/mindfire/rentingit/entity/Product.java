@@ -29,14 +29,16 @@ public class Product {
 	private int pricePerMonth;
 	private int pinCode;
 	private int categoryId;
+	private int parentCategoryId;
 	private int ownerId;
 
 	public Product() {
 	}
 
-	public Product(String productName,String actualName, String maintainanceTime, String assetStatus, String assetDescription,
-			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
-			int pinCode, int categoryId, int ownerId) {
+
+	public Product( String productName, String actualName, String maintainanceTime, String assetStatus,
+			String assetDescription, String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek,
+			int pricePerMonth, int pinCode, int categoryId, int parentCategoryId, int ownerId) {
 		super();
 		this.productName = productName;
 		this.actualName = actualName;
@@ -51,8 +53,10 @@ public class Product {
 		this.pricePerMonth = pricePerMonth;
 		this.pinCode = pinCode;
 		this.categoryId = categoryId;
+		this.parentCategoryId = parentCategoryId;
 		this.ownerId = ownerId;
 	}
+
 
 	public long getId() {
 		return Id;
@@ -174,5 +178,15 @@ public class Product {
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
 	}
+
+	public int getParentCategoryId() {
+		return parentCategoryId;
+	}
+
+	public void setParentCategoryId(int parentCategoryId) {
+		this.parentCategoryId = parentCategoryId;
+	}
+	
+	
 
 }

@@ -41,8 +41,8 @@ public class AddProducts {
 				productRegisterRequest.getAssetDescription(), productRegisterRequest.getImageUrl(),
 				productRegisterRequest.getUnits(), productRegisterRequest.getPricePerHour(),
 				productRegisterRequest.getPricePerDay(), productRegisterRequest.getPricePerWeek(),
-				productRegisterRequest.getPricePerMonth(), productRegisterRequest.getPinCode(),
-				productRegisterRequest.getCategoryId(), productRegisterRequest.getOwnerId());
+				productRegisterRequest.getPricePerMonth(), productRegisterRequest.getPinCode(), 
+				productRegisterRequest.getCategoryId(),productRegisterRequest.getParentCategoryId(), productRegisterRequest.getOwnerId());
 
 		productRepository.save(newProducts);
 

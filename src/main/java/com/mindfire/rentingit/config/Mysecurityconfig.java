@@ -59,7 +59,7 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/rentingIt/user/signin/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
 				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
 				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
-				.antMatchers("/rentingIt/product/category/all/**").permitAll()
+				.antMatchers("/rentingIt/product/category/**").permitAll()
 				.antMatchers("/rentingIt/product/all/**").permitAll()
 				.antMatchers("/rentingIt/product/search/**").permitAll()
 				.antMatchers("/rentingIt/product/resources/download-image/*").permitAll()

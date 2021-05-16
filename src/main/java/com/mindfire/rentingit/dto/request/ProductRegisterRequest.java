@@ -18,6 +18,7 @@ public class ProductRegisterRequest {
 	private int pricePerMonth;
 	private int pinCode;
 	private int categoryId;
+	private int parentCategoryId;
 	private int ownerId;
 
 	public String getProductName() {
@@ -131,5 +132,14 @@ public class ProductRegisterRequest {
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
 	}
+
+	public int getParentCategoryId() {
+		return parentCategoryId;
+	}
+
+	public void setParentCategoryId(int parentCategoryId) {
+		this.parentCategoryId = parentCategoryId;
+	}
+	
 
 }
