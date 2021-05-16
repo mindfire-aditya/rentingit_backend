@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +34,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mindfire.rentingit.constants.Message;
 import com.mindfire.rentingit.dto.response.UploadFileResponse;
+import com.mindfire.rentingit.exception.FileStorageException;
 import com.mindfire.rentingit.services.FileStorageService;
 
 @CrossOrigin(origins = "*")
@@ -52,7 +55,16 @@ public class FileStorageController {
 			return new UploadFileResponse(msg.EMPTY_FILE_SELECTED, null, null, null, null, 0);
 		}
 
-		String fileName = fileStorageService.storeFile(file);
+		//String fileName = fileStorageService.storeFile(file);
+		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
+		fileName  = fileName.replaceAll(":","_");
+		fileName = fileName.replaceAll(" ", "_");
+		
+		// Check if the file's name contains invalid characters
+		if (fileName.contains("..")) {
+			throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+		}
+		
 		Path filePath = fileStorageService.getPath(file);
 
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()

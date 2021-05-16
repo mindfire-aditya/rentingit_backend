@@ -3,7 +3,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/mydb?serverTimeZone=UTC
     username: root
-    password: password
+    password: Ujju@2211
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -29,6 +29,5 @@ pass:
     
   
 file:
-  base-dir: F:/GITHUB/
+  base-dir: C:/Users/mindfire/Documents/GitHub/
   upload-dir: rentingit_backend/src/main/resources/Upload
-

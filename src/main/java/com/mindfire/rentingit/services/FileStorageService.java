@@ -37,48 +37,44 @@ public class FileStorageService {
 		}
 	}
 
-	public String storeFile(MultipartFile file) {
-		// Normalize file name
-		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
-		fileName  = fileName.replaceAll(":","_");
-
-		try {
-			// Check if the file's name contains invalid characters
-			if (fileName.contains("..")) {
-				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
-			}
-
-			// Copy file to the target location (Replacing existing file with the same name)
-			Path targetLocation = this.fileStorageLocation.resolve(fileName);
-			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
-			return fileName;
-		} catch (IOException ex) {
-			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
-		}
-	}
+//	public String storeFile(MultipartFile file) {
+//		// Normalize file name
+//		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
+//		fileName  = fileName.replaceAll(":","_");
+//
+//		try {
+//			// Check if the file's name contains invalid characters
+//			if (fileName.contains("..")) {
+//				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+//			}
+//
+//			// Copy file to the target location (Replacing existing file with the same name)
+//			Path targetLocation = this.fileStorageLocation.resolve(fileName);
+//			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+//
+//			return fileName;
+//		} catch (IOException ex) {
+//			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+//		}
+//	}
 	
 	
 	//getting image path
-	public Path getPath(MultipartFile file) {
+	public Path getPath(MultipartFile file) throws IOException {
 		// Normalize file name
 		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
 		fileName  = fileName.replaceAll(":","_");
 
-		try {
-			// Check if the file's name contains invalid characters
-			if (fileName.contains("..")) {
-				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
-			}
-
-			// Copy file to the target location (Replacing existing file with the same name)
-			Path targetLocation = this.fileStorageLocation.resolve(fileName);
-			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
-			return targetLocation;
-		} catch (IOException ex) {
-			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+		// Check if the file's name contains invalid characters
+		if (fileName.contains("..")) {
+			throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
 		}
+
+		// Copy file to the target location (Replacing existing file with the same name)
+		Path targetLocation = this.fileStorageLocation.resolve(fileName);
+		Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+		return targetLocation;
 	}
 
 	public Resource loadFileAsResource(String fileName) throws IOException {
