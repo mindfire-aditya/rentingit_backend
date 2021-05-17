@@ -4,7 +4,9 @@
 package com.mindfire.rentingit.constants;
 
 import org.springframework.stereotype.Component;
-
+/*
+ * this file contains the constant messages that are fired during the exceution of program
+ */
 @Component
 public class Message {
 

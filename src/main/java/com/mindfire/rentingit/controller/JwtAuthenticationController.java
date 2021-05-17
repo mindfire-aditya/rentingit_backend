@@ -35,14 +35,22 @@ public class JwtAuthenticationController {
 	@Autowired
 	AddUsers addUser;
 
-	// method for signin
+	/*
+	 * method for user signin
+	 * imput- user name and password 
+	 * output - response entity with JWWt token
+	 */
 	@PostMapping(value = "/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest jwtRequest) throws Exception {
 
 		return addUser.authUser(jwtRequest);
 	}
 
-	// method for signup
+	/*
+	 * method for user signup
+	 * imput- user name, password and email 
+	 * output - success msg and add user to user table
+	 */
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signuprequest) {
 

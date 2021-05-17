@@ -47,7 +47,11 @@ public class FileStorageController {
 
 	@Autowired
 	private Message msg;
-
+	/*
+	 * method responsible for uploading the image
+	 * input- a image file
+	 * output - image response body
+	 */
 	@PostMapping("/upload-single-image")
 	public UploadFileResponse uploadSingleImage(@RequestParam("file") MultipartFile file) throws IOException {
 
@@ -82,6 +86,11 @@ public class FileStorageController {
 
 	}
 
+	/*
+	 * method responsible for uploading multiple image
+	 * input- multiple image file
+	 * output - array of image response body
+	 */
 	@PostMapping("/upload-multiple-images")
 	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
 		return Arrays.asList(files).stream().map(file -> {
@@ -95,6 +104,11 @@ public class FileStorageController {
 		}).collect(Collectors.toList());
 	}
 
+	/*
+	 * method responsible for downloading the image
+	 * input- image file name
+	 * output - byte array of image
+	 */
 	@GetMapping("/download-image/{imgName}")
 	public ResponseEntity<byte[]> downloadImage(@PathVariable String imgName, HttpServletRequest request)
 			throws IOException {
@@ -120,7 +134,11 @@ public class FileStorageController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(data);
 	}
-	
+	/*
+	 * method responsible for downloading the image
+	 * input- image file name
+	 * output - base64 encoded string in json format
+	 */
 	@GetMapping("/get-image/{imgName}")
 	public @ResponseBody Map<String,String> getImage(@PathVariable String imgName) throws IOException { 
   

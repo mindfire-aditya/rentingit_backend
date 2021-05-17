@@ -129,6 +129,7 @@ public class ProductController {
 
 	}
 
+	// get the category name based upon child category name
 	@GetMapping("/category/childcategory/{childCategoryName}")
 	public Category getProductByChildCategoryName(@PathVariable(value = "childCategoryName") String childCategoryName) {
 		return this.categoryRepository.findByChildCategory(childCategoryName).orElseThrow(
@@ -136,6 +137,7 @@ public class ProductController {
 
 	}
 
+	// get the product based upon the name 
 	@GetMapping("/search/{productName}")
 	public List<Product> getProductsByProductName(@PathVariable(value = "productName") String productName) {
 		return productRepository.findByProductName(productName);

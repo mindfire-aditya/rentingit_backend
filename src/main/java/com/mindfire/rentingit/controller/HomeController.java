@@ -18,13 +18,17 @@ public class HomeController {
 	public String allAccess() {
 		return "HELLLO WORLD THIS IA A PUBLIC CONTENT";
 	}
-
+	/*
+	 * based upon roles USER can access the content
+	 */
 	@GetMapping("/user")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public String userAccess() {
 		return "User Content.";
 	}
-
+	/*
+	 * based upon roles ADMIN can access the content
+	 */
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String adminAccess() {

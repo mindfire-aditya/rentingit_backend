@@ -1,6 +1,9 @@
 package com.mindfire.rentingit.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+/*
+ * This file contain the configuration regarding file storage.
+ */
 
 @ConfigurationProperties(prefix = "file")
 public class FileStorageConfig {
