@@ -3,14 +3,8 @@
  */
 package com.mindfire.rentingit.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
-import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -85,7 +79,7 @@ public class ProductController {
 	public List<Category> getAllCategory() {
 		return this.categoryRepository.findAll();
 	}
-
+	
 	// get all Products
 	@GetMapping("/all")
 	public List<Product> getAllProducts() {
@@ -111,6 +105,12 @@ public class ProductController {
 	@GetMapping("/category/id/{id}")
 	public List<Product> getProductByCategoryId(@PathVariable(value = "id") int categoryId) {
 		return this.productRepository.findByCategoryId(categoryId);
+	}
+	
+	// get product by parent category id
+	@GetMapping("/category/parentId/{id}")
+	public List<Product> getProductByParentCategoryId(@PathVariable(value = "id") int parentCategoryId) {
+		return this.productRepository.findByParentCategoryId(parentCategoryId);
 	}
 
 	@GetMapping("/currently-loggedin")
@@ -142,6 +142,7 @@ public class ProductController {
 	public List<Product> getProductsByProductName(@PathVariable(value = "productName") String productName) {
 		return productRepository.findByProductName(productName);
 	}
+	
 	
 
 }

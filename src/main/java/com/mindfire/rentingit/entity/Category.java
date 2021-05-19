@@ -70,6 +70,4 @@ public class Category {
 		this.image_url = image_url;
 	}
 	
-	
-
 }
