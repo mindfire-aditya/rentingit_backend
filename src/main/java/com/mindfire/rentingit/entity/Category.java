@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "CATEGORIES")
 public class Category {

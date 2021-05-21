@@ -2,8 +2,12 @@ package com.mindfire.rentingit.dto.request;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class OrderRequest {
-	
+
 	private int ownerId;
 
 	private int customerId;
@@ -15,16 +19,12 @@ public class OrderRequest {
 	private int total_amount;
 	private int units;
 
-
-	
-	
 	public OrderRequest() {
 		super();
 	}
-	
-	public OrderRequest(int ownerId, int productId, int customerId, String rent_mode,
-			LocalDateTime start_datetime, LocalDateTime end_datetime, boolean agreed_to_terms_and_conditions,
-			int total_amount,int units) {
+
+	public OrderRequest(int ownerId, int productId, int customerId, String rent_mode, LocalDateTime start_datetime,
+			LocalDateTime end_datetime, boolean agreed_to_terms_and_conditions, int total_amount, int units) {
 		super();
 		this.ownerId = ownerId;
 		this.productId = productId;
@@ -40,24 +40,31 @@ public class OrderRequest {
 	public String getRent_mode() {
 		return rent_mode;
 	}
+
 	public void setRent_mode(String rent_mode) {
 		this.rent_mode = rent_mode;
 	}
+
 	public int getUnits() {
 		return units;
 	}
+
 	public void setUnits(int units) {
 		this.units = units;
 	}
+
 	public LocalDateTime getStart_datetime() {
 		return start_datetime;
 	}
+
 	public void setStart_datetime(LocalDateTime start_datetime) {
 		this.start_datetime = start_datetime;
 	}
+
 	public LocalDateTime getEnd_datetime() {
 		return end_datetime;
 	}
+
 	public void setEnd_datetime(LocalDateTime end_datetime) {
 		this.end_datetime = end_datetime;
 	}
@@ -101,7 +108,5 @@ public class OrderRequest {
 	public void setTotal_amount(int total_amount) {
 		this.total_amount = total_amount;
 	}
-	
-	
-	
+
 }

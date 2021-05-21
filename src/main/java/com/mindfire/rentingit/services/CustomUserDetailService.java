@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.repository.UserRepository;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 	@Autowired

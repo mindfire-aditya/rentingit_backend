@@ -11,6 +11,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "PICKUP_DETAILS")
 @Getter

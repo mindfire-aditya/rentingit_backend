@@ -1,8 +1,9 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.dto.response;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class MessageResponse {
 	private String message;
 

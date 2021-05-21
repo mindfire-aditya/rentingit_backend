@@ -10,6 +10,11 @@ import com.mindfire.rentingit.config.SwagerConfiguration;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author ujjwalk
+ * @author aditya
+ *
+ */
 @SpringBootApplication
 @EnableSwagger2
 @Import(SwagerConfiguration.class)

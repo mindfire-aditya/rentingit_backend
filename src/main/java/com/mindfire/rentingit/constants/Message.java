@@ -1,15 +1,16 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.constants;
 
 import org.springframework.stereotype.Component;
-/*
- * this file contains the constant messages that are fired during the exceution of program
+
+/**
+ * @author ujjwalk this file contains the constant messages that are fired
+ *         during the exceution of program
+ *
  */
 @Component
 public class Message {
 
+	
 	public final String EMAIL_TAKEN = "Error: Email is already taken!!";
 	public final String USERNAME_TAKEN = "Error: UserName is already taken!!";
 	public final String ROLE_NOT_FOUND = "Error: Role is not found.";
@@ -23,6 +24,5 @@ public class Message {
 	public final String EMPTY_FILE_SELECTED = "Sorry no file is selected!!";
 	public final String ORDER_ADDED = "Order added successfully !!";
 	public final String CANT_ADDED_ORDER = "Sorry request order FAILED";
-	
-	
+
 }

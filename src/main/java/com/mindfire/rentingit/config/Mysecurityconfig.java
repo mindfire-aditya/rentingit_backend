@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.mindfire.rentingit.services.CustomUserDetailService;
-/*
- * file contains the code realted to security which are public url's and which are private
+
+/**
+ * @author ujjwalk file contains the code realted to security which are public
+ *         url's and which are private
+ *
  */
 @Configuration
 @EnableWebSecurity
@@ -61,9 +61,8 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/rentingIt/user/signin/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
 				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
 				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
-				.antMatchers("/rentingIt/product/category/**").permitAll()
-				.antMatchers("/rentingIt/product/all/**").permitAll()
-				.antMatchers("/rentingIt/product/search/**").permitAll()
+				.antMatchers("/rentingIt/product/category/**").permitAll().antMatchers("/rentingIt/product/all/**")
+				.permitAll().antMatchers("/rentingIt/product/search/**").permitAll()
 				.antMatchers("/rentingIt/product/resources/download-image/*").permitAll()
 				.antMatchers("/rentingIt/product/resources/get-image/*").permitAll()
 

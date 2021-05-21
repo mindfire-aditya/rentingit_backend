@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.services;
 
 import java.util.HashSet;
@@ -35,6 +32,11 @@ import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserDetailsInfoRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 
+/**
+ * @author ujjwalk
+ *
+ */
+
 @Service
 public class AddUsers {
 	@Autowired
@@ -68,7 +70,12 @@ public class AddUsers {
 				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
 	}
 
-	// function for checking alredy existing user as well as adding new user
+	/**
+	 * function for checking alredy existing user as well as adding new user
+	 * 
+	 * @param signuprequest
+	 * @return response entity
+	 */
 	public ResponseEntity<?> addingUser(SignupRequest signuprequest) {
 
 		if (userRepository.existsByUsername(signuprequest.getUsername())) {
@@ -121,7 +128,13 @@ public class AddUsers {
 		return ResponseEntity.ok(new MessageResponse(msg.USER_REGISTERED));
 	}
 
-	// function for adding the user extra details in DB
+	/**
+	 * function for adding the user extra details in DB
+	 * 
+	 * @param userDetailsInfoRequest
+	 * @param userId
+	 * @return response entity
+	 */
 	public ResponseEntity<?> addingUserDetails(UserDetailsInfoRequest userDetailsInfoRequest, long userId) {
 
 		// Create new userDetails info with required details
@@ -138,7 +151,13 @@ public class AddUsers {
 		return ResponseEntity.ok(new MessageResponse(msg.USER_INFO_ADDED));
 	}
 
-	// updating user info
+	/**
+	 * updating user info
+	 * 
+	 * @param existingUserDetails
+	 * @param userId
+	 * @return user details
+	 */
 	public UserDetailsInfo updateUserInfo(UserDetailsInfo existingUserDetails, long userId) {
 
 		UserDetailsInfo existingUserDetail = this.userDetailsInfoRepository.findById(userId)
@@ -161,7 +180,13 @@ public class AddUsers {
 		return this.userDetailsInfoRepository.save(existingUserDetail);
 	}
 
-	// updating user credentials
+	/**
+	 * updating user credentials
+	 * 
+	 * @param user
+	 * @param userId
+	 * @return updated user credentials
+	 */
 	public User updateUserCredentials(User user, long userId) {
 
 		User existingUser = this.userRepository.findById(userId)

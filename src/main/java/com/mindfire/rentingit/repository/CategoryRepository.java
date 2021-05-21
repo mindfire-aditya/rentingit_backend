@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.mindfire.rentingit.entity.Category;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 

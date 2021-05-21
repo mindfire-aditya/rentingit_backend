@@ -1,8 +1,9 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.dto.response;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class ReCaptchaResponse {
 	private boolean success;
 	private String challenge_ts;

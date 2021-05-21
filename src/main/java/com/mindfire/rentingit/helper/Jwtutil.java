@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.helper;
 
 import java.util.Date;
@@ -20,6 +17,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Component
 public class Jwtutil {
 	private static final Logger logger = LoggerFactory.getLogger(Jwtutil.class);

@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.entity;
 
 import java.util.HashSet;
@@ -18,6 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "email") })
