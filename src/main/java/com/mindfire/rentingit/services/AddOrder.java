@@ -50,8 +50,7 @@ public class AddOrder {
 
 		if ((existingProduct.getUnits() >= newOrder.getUnits())) {
 			orderRepository.save(newOrder);
-			existingProduct.setUnits((existingProduct.getUnits() - newOrder.getUnits()));
-			productRepository.save(existingProduct);
+		
 
 			return ResponseEntity.ok(new MessageResponse(msg.ORDER_ADDED));
 		} else {
