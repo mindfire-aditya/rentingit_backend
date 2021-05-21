@@ -100,6 +100,7 @@ public class OrderController {
 		return ResponseEntity.ok().build();
 	}
 
+<<<<<<< HEAD
 	/**
 	 * @param addNewOrder
 	 * @return success msg on addition of orders
@@ -107,6 +108,23 @@ public class OrderController {
 	@PostMapping(value = "/new-order")
 	public ResponseEntity<?> placeOrder(@RequestBody OrderRequest addNewOrder) {
 		return addOrder.addNewOrder(addNewOrder);
+=======
+	@PostMapping(value = "/new-order")
+	public ResponseEntity<?> placeOrder(@RequestBody OrderRequest addNewOrder) {
+		return addOrder.addNewOrder(addNewOrder);
+	}
+
+	// get all orders by owner id
+	@GetMapping("/my-products-on-rent/{id}")
+	public List<Order> getMyProductsOnRent(@PathVariable(value = "id") int id) {
+		return this.orderRepository.findByOwnerId(id);
+	}
+
+	// get all orders by owner id
+	@GetMapping("/orders-by-product-id/{id}")
+	public List<Order> getOrdersByProductId(@PathVariable(value = "id") int id) {
+		return this.orderRepository.findByProductId(id);
+>>>>>>> 0fb198b338b3215a4bab80821bb237f69755aa3b
 	}
 
 }
