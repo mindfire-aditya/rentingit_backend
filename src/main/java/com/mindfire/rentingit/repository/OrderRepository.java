@@ -14,8 +14,10 @@ import com.mindfire.rentingit.entity.Order;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
+	List<Order> findByProductId(int productId);
+	
 	List<Order> findByOwnerId(int ownerId);
 
 	List<Order> findByCustomerId(int customerId);
-
+	
 }

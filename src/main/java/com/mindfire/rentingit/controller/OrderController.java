@@ -31,7 +31,7 @@ public class OrderController {
 
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	AddOrder addOrder;
 
@@ -41,13 +41,12 @@ public class OrderController {
 		return this.orderRepository.findAll();
 	}
 
-	
 	// get all orders
 	@GetMapping("/all/{id}")
 	public List<Order> getAllCustomOders(@PathVariable(value = "id") int cId) {
 		return this.orderRepository.findByCustomerId(cId);
 	}
-	
+
 	// get order by id
 	@GetMapping("/{id}")
 	public Order getOrderById(@PathVariable(value = "id") long orderId) {
@@ -76,22 +75,22 @@ public class OrderController {
 		this.orderRepository.delete(existingOrder);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	@PostMapping(value = "/new-order")
 	public ResponseEntity<?> placeOrder(@RequestBody OrderRequest addNewOrder) {
-		return  addOrder.addNewOrder(addNewOrder);
+		return addOrder.addNewOrder(addNewOrder);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// get all orders by owner id
+	@GetMapping("/my-products-on-rent/{id}")
+	public List<Order> getMyProductsOnRent(@PathVariable(value = "id") int id) {
+		return this.orderRepository.findByOwnerId(id);
+	}
+
+	// get all orders by owner id
+	@GetMapping("/orders-by-product-id/{id}")
+	public List<Order> getOrdersByProductId(@PathVariable(value = "id") int id) {
+		return this.orderRepository.findByProductId(id);
+	}
 
 }

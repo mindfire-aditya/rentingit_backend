@@ -138,3 +138,6 @@ src/main/resources/static/Upload/
 src\main\resources\static\Upload/
 *.jpg
 *.png
+*.jpeg
+*.png
+*.png
