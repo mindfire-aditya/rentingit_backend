@@ -22,6 +22,7 @@ public class Message {
 	public final String FILES_UPLOADED = "Files uploaded successfully !!";
 	public final String EMPTY_FILE_SELECTED = "Sorry no file is selected!!";
 	public final String ORDER_ADDED = "Order added successfully !!";
+	public final String CANT_ADDED_ORDER = "Sorry request order FAILED";
 	
 	
 }
