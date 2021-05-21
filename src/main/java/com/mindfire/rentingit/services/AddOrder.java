@@ -45,15 +45,16 @@ public class AddOrder {
 			User currentUser = customUserDetails.getCurrentUser();
 			long currentUserId = currentUser.getId();
 			
-			
 
 			// Create new product info with required details
 			Order newOrder = new Order((int)currentOwnerId,(int)currentUserId,(int)productId,order.getStart_datetime(),
 										order.getEnd_datetime(),order.getRent_mode(),order.isAgreedToTermsAndConditions(),
 										order.getTotal_amount(),order.getUnits());
 					
-
+			
 			orderRepository.save(newOrder);
+			existingProduct.setUnits((existingProduct.getUnits() - newOrder.getUnits()));
+			productRepository.save(existingProduct);
 
 			return ResponseEntity.ok(new MessageResponse(msg.ORDER_ADDED));
 		}

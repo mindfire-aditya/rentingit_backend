@@ -133,6 +133,7 @@ public class FileStorageController {
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(data);
+		
 	}
 	/*
 	 * method responsible for downloading the image
@@ -155,7 +156,6 @@ public class FileStorageController {
 		jsonMap.put("content", encodeImage); 
 		 
 		return jsonMap; 
-		
-	} 
+	}
 
 }
