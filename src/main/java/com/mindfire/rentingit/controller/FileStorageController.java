@@ -37,6 +37,10 @@ import com.mindfire.rentingit.dto.response.UploadFileResponse;
 import com.mindfire.rentingit.exception.FileStorageException;
 import com.mindfire.rentingit.services.FileStorageService;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/rentingIt/product/resources/")
@@ -47,10 +51,13 @@ public class FileStorageController {
 
 	@Autowired
 	private Message msg;
-	/*
+
+	/**
 	 * method responsible for uploading the image
-	 * input- a image file
-	 * output - image response body
+	 * 
+	 * @param file
+	 * @return uploadfile response
+	 * @throws IOException
 	 */
 	@PostMapping("/upload-single-image")
 	public UploadFileResponse uploadSingleImage(@RequestParam("file") MultipartFile file) throws IOException {
@@ -59,16 +66,16 @@ public class FileStorageController {
 			return new UploadFileResponse(msg.EMPTY_FILE_SELECTED, null, null, null, null, 0);
 		}
 
-		//String fileName = fileStorageService.storeFile(file);
-		String fileName = LocalDateTime.now().toString() +StringUtils.cleanPath(file.getOriginalFilename());
-		fileName  = fileName.replaceAll(":","_");
+		// String fileName = fileStorageService.storeFile(file);
+		String fileName = LocalDateTime.now().toString() + StringUtils.cleanPath(file.getOriginalFilename());
+		fileName = fileName.replaceAll(":", "_");
 		fileName = fileName.replaceAll(" ", "_");
-		
+
 		// Check if the file's name contains invalid characters
 		if (fileName.contains("..")) {
 			throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
 		}
-		
+
 		Path filePath = fileStorageService.getPath(file);
 
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -86,10 +93,11 @@ public class FileStorageController {
 
 	}
 
-	/*
+	/**
 	 * method responsible for uploading multiple image
-	 * input- multiple image file
-	 * output - array of image response body
+	 * 
+	 * @param files
+	 * @return upload response list
 	 */
 	@PostMapping("/upload-multiple-images")
 	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
@@ -104,10 +112,13 @@ public class FileStorageController {
 		}).collect(Collectors.toList());
 	}
 
-	/*
-	 * method responsible for downloading the image
-	 * input- image file name
-	 * output - byte array of image
+	/**
+	 * method responsible for downloading the image by using it name
+	 * 
+	 * @param imgName
+	 * @param request
+	 * @return byte array
+	 * @throws IOException
 	 */
 	@GetMapping("/download-image/{imgName}")
 	public ResponseEntity<byte[]> downloadImage(@PathVariable String imgName, HttpServletRequest request)
@@ -133,29 +144,32 @@ public class FileStorageController {
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(data);
-		
+
 	}
-	/*
+
+	/**
 	 * method responsible for downloading the image
-	 * input- image file name
-	 * output - base64 encoded string in json format
+	 * 
+	 * @param imgName
+	 * @return base64 encoded string in json format
+	 * @throws IOException
 	 */
 	@GetMapping("/get-image/{imgName}")
-	public @ResponseBody Map<String,String> getImage(@PathVariable String imgName) throws IOException { 
-  
+	public @ResponseBody Map<String, String> getImage(@PathVariable String imgName) throws IOException {
+
 		Resource resource;
 		Path filePath = fileStorageService.getPathByImageName(imgName);
-		
+
 		resource = new UrlResource(filePath.toUri());
 		File file = new File(resource.getFile().getAbsolutePath());
-		     
-		String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath())); 
-		 
-		Map<String, String> jsonMap = new HashMap<>(); 
-		 
-		jsonMap.put("content", encodeImage); 
-		 
-		return jsonMap; 
+
+		String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
+
+		Map<String, String> jsonMap = new HashMap<>();
+
+		jsonMap.put("content", encodeImage);
+
+		return jsonMap;
 	}
 
 }

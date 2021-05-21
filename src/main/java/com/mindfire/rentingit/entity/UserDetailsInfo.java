@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
@@ -9,6 +6,10 @@ import javax.persistence.Table;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @CrossOrigin("*")
 @Entity
 @Table(name = "USERS_INFO")

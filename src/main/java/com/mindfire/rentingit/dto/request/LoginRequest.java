@@ -1,8 +1,9 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.dto.request;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class LoginRequest {
 	String username;
 	String password;

@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.config;
 
 import java.util.Collections;
@@ -18,7 +15,9 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-/*
+
+/**
+ * @author ujjwalk
  * this file contain the configuration related to swager to have a proper documentation
  */
 @Configuration

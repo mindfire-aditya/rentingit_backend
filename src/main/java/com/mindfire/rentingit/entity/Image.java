@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "IMAGE_DETAILS")
 public class Image {

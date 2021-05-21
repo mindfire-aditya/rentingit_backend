@@ -15,6 +15,10 @@ import com.mindfire.rentingit.repository.OrderRepository;
 import com.mindfire.rentingit.repository.ProductRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Service
 public class AddOrder {
 
@@ -29,7 +33,12 @@ public class AddOrder {
 	@Autowired
 	Message msg;
 
-	// function for adding the product details in DB
+	/**
+	 * function for adding the product details in DB
+	 * 
+	 * @param order
+	 * @return response entity with success or failure msg
+	 */
 	public ResponseEntity<?> addNewOrder(OrderRequest order) {
 
 		long productId = order.getProductId();

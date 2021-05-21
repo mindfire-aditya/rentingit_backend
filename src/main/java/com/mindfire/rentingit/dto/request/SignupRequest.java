@@ -1,10 +1,11 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.dto.request;
 
 import java.util.Set;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class SignupRequest {
 	private String username;
 	private String email;

@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.repository;
 
 import java.util.List;
@@ -11,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.mindfire.rentingit.entity.Order;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 

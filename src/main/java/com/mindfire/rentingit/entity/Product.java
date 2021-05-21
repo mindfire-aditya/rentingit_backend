@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.entity;
 
 import javax.persistence.Entity;
@@ -9,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "ASSETS")
 public class Product {
@@ -35,8 +36,7 @@ public class Product {
 	public Product() {
 	}
 
-
-	public Product( String productName, String actualName, String maintainanceTime, String assetStatus,
+	public Product(String productName, String actualName, String maintainanceTime, String assetStatus,
 			String assetDescription, String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek,
 			int pricePerMonth, int pinCode, int categoryId, int parentCategoryId, int ownerId) {
 		super();
@@ -57,7 +57,6 @@ public class Product {
 		this.ownerId = ownerId;
 	}
 
-
 	public long getId() {
 		return Id;
 	}
@@ -74,7 +73,6 @@ public class Product {
 		this.productName = productName;
 	}
 
-	
 	public String getActualName() {
 		return actualName;
 	}
@@ -186,7 +184,5 @@ public class Product {
 	public void setParentCategoryId(int parentCategoryId) {
 		this.parentCategoryId = parentCategoryId;
 	}
-	
-	
 
 }

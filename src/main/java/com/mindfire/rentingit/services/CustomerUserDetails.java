@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.services;
 
 import java.util.Collection;
@@ -15,6 +12,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mindfire.rentingit.entity.User;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class CustomerUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 

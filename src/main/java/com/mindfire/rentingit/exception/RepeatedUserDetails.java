@@ -1,11 +1,12 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class RepeatedUserDetails extends RuntimeException {
 	private static final long serialVersionUID = 1L;

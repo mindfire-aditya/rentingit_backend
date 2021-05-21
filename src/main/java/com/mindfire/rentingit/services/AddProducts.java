@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.services;
 
 import java.util.List;
@@ -19,6 +16,10 @@ import com.mindfire.rentingit.exception.ResourceNotFoundException;
 import com.mindfire.rentingit.repository.ProductRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Service
 public class AddProducts {
 
@@ -32,17 +33,22 @@ public class AddProducts {
 	Message msg;
 
 	// function for adding the product details in DB
+
+	/**
+	 * @param productRegisterRequest
+	 * @return response entity
+	 */
 	public ResponseEntity<?> addingProductDetails(ProductRegisterRequest productRegisterRequest) {
 
 		// Create new product info with required details
 		Product newProducts = new Product(productRegisterRequest.getProductName(),
-				productRegisterRequest.getActualName(),
-				productRegisterRequest.getMaintainanceTime(), productRegisterRequest.getAssetStatus(),
-				productRegisterRequest.getAssetDescription(), productRegisterRequest.getImageUrl(),
-				productRegisterRequest.getUnits(), productRegisterRequest.getPricePerHour(),
-				productRegisterRequest.getPricePerDay(), productRegisterRequest.getPricePerWeek(),
-				productRegisterRequest.getPricePerMonth(), productRegisterRequest.getPinCode(), 
-				productRegisterRequest.getCategoryId(),productRegisterRequest.getParentCategoryId(), productRegisterRequest.getOwnerId());
+				productRegisterRequest.getActualName(), productRegisterRequest.getMaintainanceTime(),
+				productRegisterRequest.getAssetStatus(), productRegisterRequest.getAssetDescription(),
+				productRegisterRequest.getImageUrl(), productRegisterRequest.getUnits(),
+				productRegisterRequest.getPricePerHour(), productRegisterRequest.getPricePerDay(),
+				productRegisterRequest.getPricePerWeek(), productRegisterRequest.getPricePerMonth(),
+				productRegisterRequest.getPinCode(), productRegisterRequest.getCategoryId(),
+				productRegisterRequest.getParentCategoryId(), productRegisterRequest.getOwnerId());
 
 		productRepository.save(newProducts);
 
@@ -50,6 +56,12 @@ public class AddProducts {
 	}
 
 	// function for updating the products details
+
+	/**
+	 * @param productRegisterRequest
+	 * @param productId
+	 * @return updated product
+	 */
 	public Product updatingProductDetails(ProductRegisterRequest productRegisterRequest, long productId) {
 
 		Product existingProduct = this.productRepository.findById(productId)
@@ -75,23 +87,26 @@ public class AddProducts {
 
 	}
 
-	// method for deleting the registered products based upon id by user
-	// it will take product id and based upon the owner it will show to the respective owner 
+	/**
+	 * method for deleting the registered products based upon id by user
+	 * 
+	 * @param productId
+	 * @return
+	 */
 	public ResponseEntity<?> deleteProductsById(long productId) {
 		// checking for the request if it is made by the current loggedIn user or not
 
 		Product existingProduct = this.productRepository.findById(productId)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found with this id :" + productId));
 
-		//getting the ownerID of product
+		// getting the ownerID of product
 		long currentOwnerId = existingProduct.getOwnerId();
-		
 
 		User currentUser = customUserDetails.getCurrentUser();
 		long currentUserId = currentUser.getId();
 
 		boolean flag;
-		if (currentUserId == currentOwnerId ) {
+		if (currentUserId == currentOwnerId) {
 			flag = true;
 
 		} else {
@@ -106,7 +121,12 @@ public class AddProducts {
 		}
 	}
 
-	// deleting the products by id for admin
+	/**
+	 * deleting the products by id for admin
+	 * 
+	 * @param productId
+	 * @return
+	 */
 	public ResponseEntity<?> deleteProducts(long productId) {
 		// checking for the request if it is made by the current loggedIn user or not
 
@@ -117,17 +137,23 @@ public class AddProducts {
 		return ResponseEntity.ok(new MessageResponse(msg.PRODUCTS_DELETED));
 
 	}
-	
-	//getting all products of currently loggedin user
-	public List<Product> findProductsOfUser(){
-		
+
+	//
+
+	/**
+	 * getting all products of currently loggedin user
+	 * 
+	 * @return list of products
+	 */
+	public List<Product> findProductsOfUser() {
+
 		User currentUser = customUserDetails.getCurrentUser();
 		long userId = currentUser.getId();
-		
-		int ownerID = (int)userId;
-		
+
+		int ownerID = (int) userId;
+
 		List<Product> p = this.productRepository.findByOwnerId(ownerID);
-		
+
 		return p;
 	}
 }

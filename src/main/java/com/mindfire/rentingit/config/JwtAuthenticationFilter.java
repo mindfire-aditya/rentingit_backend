@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.config;
 
 import java.io.IOException;
@@ -26,7 +23,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.mindfire.rentingit.helper.Jwtutil;
 import com.mindfire.rentingit.services.CustomUserDetailService;
 /*
+ * 
+ */
+
+/**
+ * @author ujjwalk
  * file responsible for the generation of token
+ *
  */
 @Component
 @Configuration

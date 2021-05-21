@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,10 @@ import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 import com.mindfire.rentingit.services.AddUsers;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/rentingIt/user")
@@ -36,9 +37,15 @@ public class JwtAuthenticationController {
 	AddUsers addUser;
 
 	/*
-	 * method for user signin
 	 * imput- user name and password 
 	 * output - response entity with JWWt token
+	 */
+	
+	/**
+	 * method for user signin
+	 * @param jwtRequest
+	 * @return response entity
+	 * @throws Exception
 	 */
 	@PostMapping(value = "/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest jwtRequest) throws Exception {
@@ -47,9 +54,14 @@ public class JwtAuthenticationController {
 	}
 
 	/*
-	 * method for user signup
 	 * imput- user name, password and email 
 	 * output - success msg and add user to user table
+	 */
+	
+	/**
+	 * method for user signup
+	 * @param signuprequest
+	 * @return response entity
 	 */
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signuprequest) {

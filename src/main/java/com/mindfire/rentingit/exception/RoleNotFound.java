@@ -1,8 +1,9 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.exception;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class RoleNotFound extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

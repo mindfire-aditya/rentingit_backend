@@ -1,6 +1,3 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.entity;
 
 import java.time.LocalDateTime;
@@ -11,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "ORDER_DETAILS")
 public class Order {

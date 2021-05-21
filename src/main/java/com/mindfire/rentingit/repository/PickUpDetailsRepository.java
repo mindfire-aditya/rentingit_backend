@@ -7,8 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.mindfire.rentingit.entity.PickUpDetails;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Repository
 public interface PickUpDetailsRepository extends JpaRepository<PickUpDetails, Long> {
-	
+
 	Optional<PickUpDetails> findByAssetId(int assetId);
 }

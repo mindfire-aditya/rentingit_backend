@@ -1,8 +1,9 @@
-/*
- * @author Ujjwal Kumar
- */
 package com.mindfire.rentingit.dto.request;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class ProductRegisterRequest {
 
 	private String productName;
@@ -140,6 +141,5 @@ public class ProductRegisterRequest {
 	public void setParentCategoryId(int parentCategoryId) {
 		this.parentCategoryId = parentCategoryId;
 	}
-	
 
 }
