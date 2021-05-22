@@ -134,3 +134,6 @@ buildNumber.properties
 .project
 
 src/main/resources/static/uploaded
+*.jpg
+*.jpeg
+*.png
