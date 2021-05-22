@@ -16,6 +16,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.mindfire.rentingit.services.CustomUserDetailService;
 
+/**
+ * @author ujjwalk file contains the code realted to security which are public
+ *         url's and which are private
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -52,7 +57,15 @@ public class Mysecurityconfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(entryPoint).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/rentingIt/resources/**").permitAll().antMatchers("/rentingIt/user/**").permitAll()
+				.antMatchers("/rentingIt/resources/**").permitAll().antMatchers("/rentingIt/user/signup/**").permitAll()
+				.antMatchers("/rentingIt/user/signin/**").permitAll().antMatchers("/rentingIt/product/pincode/**")
+				.permitAll().antMatchers("/rentingIt/product/category/id/**").permitAll()
+				.antMatchers("/rentingIt/product/category/childcategory/**").permitAll()
+				.antMatchers("/rentingIt/product/category/**").permitAll().antMatchers("/rentingIt/product/all/**")
+				.permitAll().antMatchers("/rentingIt/product/search/**").permitAll()
+				.antMatchers("/rentingIt/product/resources/download-image/*").permitAll()
+				.antMatchers("/rentingIt/product/resources/get-image/*").permitAll()
+
 				.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
 						"/swagger-ui.html", "/webjars/**")
 				.permitAll().anyRequest().authenticated();

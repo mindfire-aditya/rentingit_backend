@@ -1,5 +1,9 @@
 package com.mindfire.rentingit.dto.request;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class UserDetailsInfoRequest {
 
 	private String firstName;
@@ -16,7 +20,6 @@ public class UserDetailsInfoRequest {
 	private String idProofType;
 	private String idNumber;
 
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -120,7 +123,5 @@ public class UserDetailsInfoRequest {
 	public void setPhoneNo(long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-	
-	
 
 }

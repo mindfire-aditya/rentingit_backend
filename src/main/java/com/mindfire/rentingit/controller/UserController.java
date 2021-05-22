@@ -21,6 +21,10 @@ import com.mindfire.rentingit.repository.UserDetailsInfoRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 import com.mindfire.rentingit.services.AddUsers;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/rentingIt/user")
@@ -35,20 +39,35 @@ public class UserController {
 	@Autowired
 	AddUsers addUser;
 
-	// get all users
+	/**
+	 * get all users
+	 * 
+	 * @return all user
+	 */
 	@GetMapping("/all")
 	public List<User> getAllUsers() {
 		return this.userRepository.findAll();
 	}
 
-	// get user by id
+	/**
+	 * get user by id
+	 * 
+	 * @param userId
+	 * @return user
+	 */
 	@GetMapping("/{id}")
 	public User getUserById(@PathVariable(value = "id") long userId) {
 		return this.userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
 	}
 
-	// method for adding extra details for the registered User
+	/**
+	 * method for adding extra details for the registered User
+	 * 
+	 * @param userInfoDetails
+	 * @param userId
+	 * @return response entity
+	 */
 	@PostMapping(value = "/add-info/{id}")
 	public ResponseEntity<?> addUserInfo(@RequestBody UserDetailsInfoRequest userInfoDetails,
 			@PathVariable(value = "id") long userId) {
@@ -56,26 +75,41 @@ public class UserController {
 		return addUser.addingUserDetails(userInfoDetails, userId);
 	}
 
-	// update user details
+	/**
+	 * update user details
+	 * 
+	 * @param existingUserDetails
+	 * @param userId
+	 * @return user details
+	 */
 	@PutMapping("/update-info/{id}")
 	public UserDetailsInfo userDetailsUpdate(@RequestBody UserDetailsInfo existingUserDetails,
 			@PathVariable("id") long userId) {
 		return addUser.updateUserInfo(existingUserDetails, userId);
 	}
 
-	// update user details
+	/**
+	 * update user details
+	 * 
+	 * @param user
+	 * @param userId
+	 * @return user
+	 */
 	@PutMapping("/update-credentials/{id}")
-	public User userCredentialsUpdate(@RequestBody User user,@PathVariable("id") long userId) {
+	public User userCredentialsUpdate(@RequestBody User user, @PathVariable("id") long userId) {
 		return addUser.updateUserCredentials(user, userId);
 	}
-	
-	// get user details by id
+
+	/**
+	 * get user details by id
+	 * 
+	 * @param userId
+	 * @return user details
+	 */
 	@GetMapping("/view-info/{id}")
 	public UserDetailsInfo getUserDetailsById(@PathVariable(value = "id") long userId) {
 		return this.userDetailsInfoRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
 	}
-
-
 
 }

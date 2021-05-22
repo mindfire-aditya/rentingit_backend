@@ -8,15 +8,21 @@ import org.springframework.stereotype.Repository;
 
 import com.mindfire.rentingit.entity.Product;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	Optional<Product> findByPinCode(int pincode);
 
 	List<Product> findByCategoryId(int Id);
-	
+
+	List<Product> findByParentCategoryId(int Id);
+
 	List<Product> findByProductName(String name);
-	
-	List<Product> findByOwnerId(int ownerId);
+
+	List<Product> findByOwnerId(int userId);
 
 }

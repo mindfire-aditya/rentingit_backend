@@ -15,6 +15,10 @@ import com.mindfire.rentingit.repository.RoleRepository;
 import com.mindfire.rentingit.repository.UserRepository;
 import com.mindfire.rentingit.services.AddUsers;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/rentingIt/user")
@@ -32,14 +36,33 @@ public class JwtAuthenticationController {
 	@Autowired
 	AddUsers addUser;
 
-	// method for signin
+	/*
+	 * imput- user name and password 
+	 * output - response entity with JWWt token
+	 */
+	
+	/**
+	 * method for user signin
+	 * @param jwtRequest
+	 * @return response entity
+	 * @throws Exception
+	 */
 	@PostMapping(value = "/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest jwtRequest) throws Exception {
 
 		return addUser.authUser(jwtRequest);
 	}
 
-	// method for signup
+	/*
+	 * imput- user name, password and email 
+	 * output - success msg and add user to user table
+	 */
+	
+	/**
+	 * method for user signup
+	 * @param signuprequest
+	 * @return response entity
+	 */
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signuprequest) {
 

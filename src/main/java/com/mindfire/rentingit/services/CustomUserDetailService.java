@@ -1,6 +1,8 @@
 package com.mindfire.rentingit.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mindfire.rentingit.entity.User;
 import com.mindfire.rentingit.repository.UserRepository;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 	@Autowired
@@ -23,4 +29,10 @@ public class CustomUserDetailService implements UserDetailsService {
 
 		return CustomerUserDetails.build(user);
 	}
+	
+	 public User getCurrentUser() {
+	    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        return userRepository.findByUsername(authentication.getName())
+	                .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + authentication.getName()));
+	    }
 }

@@ -2,6 +2,10 @@ package com.mindfire.rentingit.dto.response;
 
 import java.util.List;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class JwtResponse {
 	private String token;
 	private String type = "Bearer";

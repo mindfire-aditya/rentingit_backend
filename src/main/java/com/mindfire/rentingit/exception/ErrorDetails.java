@@ -2,6 +2,10 @@ package com.mindfire.rentingit.exception;
 
 import java.util.Date;
 
+/**
+ * @author ujjwalk
+ *
+ */
 public class ErrorDetails {
 	private Date timestamp;
 	private String message;

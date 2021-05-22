@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.mindfire.rentingit.entity.User;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByUsername(String username);
@@ -14,5 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Boolean existsByUsername(String username);
 
 	Boolean existsByEmail(String email);
+	
+	
 
 }

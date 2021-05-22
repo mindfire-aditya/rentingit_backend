@@ -28,6 +28,7 @@ pass:
     jwtExpirationMs: 86400000
     
   
-file:
-  base-dir: F:/GITHUB/
-  upload-dir: rentingit_backend/src/main/resources/Upload
+file.upload-dir: G:/workspace-spring-tool-suite-4-4.10.0.RELEASE/rentingit_backend/src/main/resources/Upload
+
+
+

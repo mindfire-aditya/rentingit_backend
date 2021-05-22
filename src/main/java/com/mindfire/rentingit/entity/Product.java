@@ -6,14 +6,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author ujjwalk
+ *
+ */
 @Entity
 @Table(name = "ASSETS")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private long Id;
 
 	private String productName;
+	private String actualName;
 	private String maintainanceTime;
 	private String assetStatus;
 	private String assetDescription;
@@ -25,17 +30,18 @@ public class Product {
 	private int pricePerMonth;
 	private int pinCode;
 	private int categoryId;
+	private int parentCategoryId;
 	private int ownerId;
 
 	public Product() {
 	}
 
-	
-	public Product(String productName, String maintainanceTime, String assetStatus, String assetDescription,
-			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
-			int pinCode, int categoryId, int ownerId) {
+	public Product(String productName, String actualName, String maintainanceTime, String assetStatus,
+			String assetDescription, String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek,
+			int pricePerMonth, int pinCode, int categoryId, int parentCategoryId, int ownerId) {
 		super();
 		this.productName = productName;
+		this.actualName = actualName;
 		this.maintainanceTime = maintainanceTime;
 		this.assetStatus = assetStatus;
 		this.assetDescription = assetDescription;
@@ -47,27 +53,7 @@ public class Product {
 		this.pricePerMonth = pricePerMonth;
 		this.pinCode = pinCode;
 		this.categoryId = categoryId;
-		this.ownerId = ownerId;
-	}
-
-
-	public Product(Long id, String productName, String maintainanceTime, String assetStatus, String assetDescription,
-			String imageUrl, int units, int pricePerHour, int pricePerDay, int pricePerWeek, int pricePerMonth,
-			int pinCode, int categoryId, int ownerId) {
-		super();
-		Id = id;
-		this.productName = productName;
-		this.maintainanceTime = maintainanceTime;
-		this.assetStatus = assetStatus;
-		this.assetDescription = assetDescription;
-		this.imageUrl = imageUrl;
-		this.units = units;
-		this.pricePerHour = pricePerHour;
-		this.pricePerDay = pricePerDay;
-		this.pricePerWeek = pricePerWeek;
-		this.pricePerMonth = pricePerMonth;
-		this.pinCode = pinCode;
-		this.categoryId = categoryId;
+		this.parentCategoryId = parentCategoryId;
 		this.ownerId = ownerId;
 	}
 
@@ -85,6 +71,14 @@ public class Product {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	public String getActualName() {
+		return actualName;
+	}
+
+	public void setActualName(String actualName) {
+		this.actualName = actualName;
 	}
 
 	public String getMaintainanceTime() {
@@ -181,6 +175,14 @@ public class Product {
 
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
+	}
+
+	public int getParentCategoryId() {
+		return parentCategoryId;
+	}
+
+	public void setParentCategoryId(int parentCategoryId) {
+		this.parentCategoryId = parentCategoryId;
 	}
 
 }
